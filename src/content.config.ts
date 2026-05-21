@@ -30,6 +30,22 @@ const methods = defineCollection({
   }),
 });
 
+const cases = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/cases" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    source: z.string(),
+    sourceAuthor: z.string().optional(),
+    sourceUrl: z.string().url().optional(),
+    sourceDate: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    takeaway: z.string().optional(),
+    date: z.coerce.date(),
+    order: z.number().default(100),
+  }),
+});
+
 const blog = defineCollection({
   loader: glob({ pattern: "**/*.md", base: "./src/content/blog" }),
   schema: z.object({
@@ -41,4 +57,4 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { projects, methods, blog };
+export const collections = { projects, methods, cases, blog };

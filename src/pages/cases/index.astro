@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const cases = (await getCollection("cases")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Layout title="案例收藏 — huanle.li">
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
+      CASES
+    </p>
+    <h1 class="text-4xl font-bold mb-4">案例收藏</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-2xl">
+      不是我自己跑过的项目，是我从同行 / 圈友 / 公开分享里收藏并已经抽出方法论的案例。
+      每一篇都标注了原作者和来源，并链接到我从这个案例里沉淀出的方法论卡片。
+    </p>
+  </section>
+
+  {
+    cases.length === 0 ? (
+      <div class="p-8 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded text-center text-[var(--color-fg-muted)]">
+        <p>案例栏目持续更新中。</p>
+      </div>
+    ) : (
+      <div class="space-y-5">
+        {cases.map((c) => (
+          <a
+            href={`/cases/${c.id}`}
+            class="block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+          >
+            <div class="flex items-center gap-2 mb-3 flex-wrap">
+              <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
+                案例研究
+              </span>
+              <span class="text-xs text-[var(--color-fg-dim)] font-mono">
+                来源 · {c.data.source}
+              </span>
+              {c.data.sourceAuthor && (
+                <span class="text-xs text-[var(--color-fg-dim)] font-mono">
+                  作者 · {c.data.sourceAuthor}
+                </span>
+              )}
+            </div>
+            <h2 class="text-xl font-semibold mb-3 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
+              {c.data.title}
+            </h2>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-4">
+              {c.data.summary}
+            </p>
+            {c.data.takeaway && (
+              <p class="text-sm text-[var(--color-accent-soft)] border-l-2 border-[var(--color-accent)] pl-3 italic">
+                {c.data.takeaway}
+              </p>
+            )}
+            <div class="flex flex-wrap gap-1.5 mt-4">
+              {c.data.tags.slice(0, 4).map((t) => (
+                <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-fg-dim)] font-mono rounded">
+                  #{t}
+                </span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</Layout>

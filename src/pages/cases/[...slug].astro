@@ -1,0 +1,86 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const cases = await getCollection("cases");
+  return cases.map((c) => ({
+    params: { slug: c.id },
+    props: { caseEntry: c },
+  }));
+}
+
+const { caseEntry } = Astro.props;
+const { Content } = await render(caseEntry);
+const { data } = caseEntry;
+const dateStr = data.date.toISOString().slice(0, 10);
+const sourceDateStr = data.sourceDate
+  ? data.sourceDate.toISOString().slice(0, 10)
+  : null;
+---
+
+<Layout title={`${data.title} — huanle.li`} description={data.summary}>
+  <article>
+    <a
+      href="/cases"
+      class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] mb-8 inline-block transition-colors"
+      >← 返回案例收藏</a
+    >
+
+    <header class="border-b border-[var(--color-border)] pb-8 mb-8">
+      <div class="flex items-center gap-3 mb-4 flex-wrap">
+        <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
+          案例研究
+        </span>
+        <span class="text-xs text-[var(--color-fg-dim)] font-mono">
+          收藏于 {dateStr}
+        </span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
+        {data.title}
+      </h1>
+      <p class="text-lg text-[var(--color-fg-muted)] leading-relaxed mb-6">
+        {data.summary}
+      </p>
+
+      <div class="bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded p-4 text-sm">
+        <p class="text-xs text-[var(--color-fg-dim)] font-mono mb-2 tracking-widest">
+          原案例来源
+        </p>
+        <div class="flex flex-wrap gap-x-6 gap-y-1 text-[var(--color-fg-muted)]">
+          <span>来源：<span class="text-[var(--color-fg)]">{data.source}</span></span>
+          {data.sourceAuthor && (
+            <span>作者：<span class="text-[var(--color-fg)]">{data.sourceAuthor}</span></span>
+          )}
+          {sourceDateStr && (
+            <span>时间：<span class="text-[var(--color-fg)]">{sourceDateStr}</span></span>
+          )}
+          {data.sourceUrl && (
+            <a
+              href={data.sourceUrl}
+              target="_blank"
+              rel="noopener"
+              class="text-[var(--color-accent)] hover:underline"
+            >
+              原文链接 ↗
+            </a>
+          )}
+        </div>
+      </div>
+
+      {data.tags.length > 0 && (
+        <div class="flex flex-wrap gap-2 mt-6">
+          {data.tags.map((t) => (
+            <span class="text-xs px-2 py-1 bg-[var(--color-bg-elev)] text-[var(--color-fg-muted)] font-mono rounded">
+              #{t}
+            </span>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="prose-zh max-w-none">
+      <Content />
+    </div>
+  </article>
+</Layout>

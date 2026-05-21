@@ -8,9 +8,13 @@ const projects = (await getCollection("projects")).sort(
 const methods = (await getCollection("methods")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+const cases = (await getCollection("cases")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 
 const featuredProjects = projects.slice(0, 4);
 const featuredMethods = methods.slice(0, 4);
+const featuredCases = cases.slice(0, 3);
 ---
 
 <Layout>
@@ -130,6 +134,47 @@ const featuredMethods = methods.slice(0, 4);
       }
     </div>
   </section>
+
+  <!-- 案例收藏 -->
+  {featuredCases.length > 0 && (
+    <section class="py-16 border-b border-[var(--color-border)]">
+      <div class="flex items-end justify-between mb-8">
+        <div>
+          <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+            案例收藏
+          </h2>
+          <p class="text-2xl font-semibold">从同行案例里抽出的方法论</p>
+        </div>
+        <a
+          href="/cases"
+          class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
+        >
+          全部案例 →
+        </a>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        {featuredCases.map((c) => (
+          <a
+            href={`/cases/${c.id}`}
+            class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+          >
+            <p class="text-xs font-mono text-[var(--color-fg-dim)] mb-2">
+              {c.data.source}
+              {c.data.sourceAuthor && ` · ${c.data.sourceAuthor}`}
+            </p>
+            <h3 class="font-semibold mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
+              {c.data.title}
+            </h3>
+            {c.data.takeaway && (
+              <p class="text-sm text-[var(--color-fg-muted)] italic line-clamp-3">
+                {c.data.takeaway}
+              </p>
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <!-- 方法论 -->
   <section class="py-16">
