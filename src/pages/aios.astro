@@ -1,0 +1,409 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const skills = [
+  {
+    name: "ad-strategy / ad-analysis / ad-report / ad-review",
+    domain: "广告增长",
+    where: "~/.claude/skills/",
+    summary: "广告投放四件套：策略制定 → 数据分析 → 报告生成 → 复盘沉淀",
+    why: "把客户投放的完整链路 skill 化，每个 skill 都登记了 AIOS 阶段、输入路径、输出位置。最大的价值是 ad-review —— 强制每个项目结束后落一份 03_领域知识/广告增长/ 下的可复用方法论，不让经验只停留在客户飞书里。",
+    stage: "Context → Decision → Execution → Feedback → Method",
+  },
+  {
+    name: "competitive-ads-extractor",
+    domain: "广告增长",
+    where: "~/.claude/skills/",
+    summary: "竞品广告自动抓取 + 结构化入库",
+    why: "蕉内项目这类持续跟踪型工作的基础设施。原始素材进 04_资料收集/竞品广告/，沉淀过的进 03_领域知识/广告增长/竞品分析/，分层非常清楚。配合 ad-analysis 跑摘要能直接出周报。",
+    stage: "Capture → Method",
+  },
+  {
+    name: "book-mirror（书镜）",
+    domain: "知识沉淀",
+    where: "~/hermes/skills/productivity/",
+    summary: "逐章读书 → 双栏映射个人经历 → 个人镜像",
+    why: "GarryTan 元元提示法在我这里的第一个落地。读书最大的痛点是看完三个月就忘，书镜强制把每章和自己当前项目/案例做映射，读完一本书相当于做了一次自我盘点。配合 cross-modal-eval 做事实核查。",
+    stage: "Capture → Context → Method",
+  },
+  {
+    name: "meeting-enrichment（会议摄入）",
+    domain: "知识沉淀",
+    where: "~/hermes/skills/productivity/",
+    summary: "会议录音 / 纪要 → 实体脑页更新 + 任务自动派发",
+    why: "客户会议结束后最容易丢的不是结论，是「会上提到的人 / 项目 / 决策」之间的关联。这个 skill 会把会议里的实体（人 / 客户 / 项目）反向更新到 09_人物联系人/、02_项目/、07_任务待办/，做到「开完会就闭环」。",
+    stage: "Capture → Method（含实体传播）",
+  },
+  {
+    name: "cross-modal-eval（跨模态评估）",
+    domain: "质量门",
+    where: "~/hermes/skills/productivity/",
+    summary: "AI 出 AI 的活前先过一道独立审核 gate",
+    why: "防止单一模型自圆其说。book-mirror 和 meeting-enrichment 入库前都过这道 gate，相当于给「AI 写、AI 审」加一层制衡。这是 AIOS 里和「记忆仲裁层」职责分离的关键 skill。",
+    stage: "横切质量门",
+  },
+  {
+    name: "lead-research-assistant",
+    domain: "客户拓展",
+    where: "~/.claude/skills/",
+    summary: "客户线索研究 + 自动归档到联系人和项目",
+    why: "接到新线索时，与其手动搜半天再粘到 Notion，不如让这个 skill 把公开资料 + 行业判断打包成一张联系人卡片，自动写到 09_人物联系人/。下次沟通时直接调起完整背景。",
+    stage: "Capture → Context",
+  },
+  {
+    name: "codex（Codex CLI Wrapper）",
+    domain: "AI 协作",
+    where: "gstack 套件内",
+    summary: "OpenAI Codex CLI 三模式：审查 / 挑战 / 咨询",
+    why: "Claude 给我写完代码后，让 codex 用对抗模式重新跑一遍 ——「这段会在什么情况下崩」「数据集 corner case 是什么」。等于免费的第二个工程师视角，对独立开发 ChatOCR、video10x 这种项目很关键。",
+    stage: "Execution 质量加固",
+  },
+  {
+    name: "lark-base / lark-doc / lark-sheets",
+    domain: "交付集成",
+    where: "lark 系列 skill",
+    summary: "飞书云文档、多维表格、电子表格的 API 集成",
+    why: "客户在飞书，我在 Obsidian，中间需要可靠的桥。蕉内项目里 docs +fetch 看现有结构、窄范围追加、链接表单独建 —— 都是从一次次「链接点不开」「序号乱了」的具体反馈里磨出来的协作偏好。",
+    stage: "Execution 交付侧",
+  },
+];
+
+const workflow = [
+  { layer: "Capture", desc: "捕捉原始输入", path: "04_资料收集/、05_AI对话/收件箱/" },
+  { layer: "Context", desc: "项目上下文", path: "02_项目/<项目名>/00_Context.md" },
+  { layer: "Decision", desc: "记录判断依据", path: "06_决策记录/、项目 04_Decisions.md" },
+  { layer: "Method", desc: "沉淀可复用方法", path: "03_领域知识/" },
+  { layer: "Execution", desc: "执行动作与任务", path: "02_项目/、07_任务待办/" },
+  { layer: "Feedback", desc: "复盘与校准", path: "08_复盘总结/" },
+  { layer: "Memory", desc: "跨 AI 写入规则", path: "90_记忆系统/" },
+];
+---
+
+<Layout
+  title="AIOS — 个人 AI 操作系统 · huanle.li"
+  description="AIOS 是我的个人 AI 操作系统：Obsidian 承载长期记忆，Codex 执行本地操作，Claude / ChatGPT 做战略推理，Hermes 做轻量摘要。"
+>
+  <!-- Hero -->
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
+      AIOS
+    </p>
+    <h1 class="text-4xl font-bold mb-4">个人 AI 操作系统</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-3xl text-lg leading-relaxed">
+      AIOS = AI Operating System。
+      不是一个具体产品，是一套让多个 AI（Codex / Claude / ChatGPT / Hermes）
+      在同一个知识库上协作的<strong class="text-[var(--color-fg)]">协议 + 工作流 + Skill 库</strong>。
+    </p>
+    <blockquote
+      class="mt-6 p-4 bg-[var(--color-bg-card)] border-l-3 border-[var(--color-accent)] rounded text-[var(--color-accent-soft)] font-mono text-sm max-w-3xl"
+    >
+      按 AIOS 工作流处理：先判断层级，再执行，最后沉淀到 VoiceKB。
+    </blockquote>
+  </section>
+
+  <!-- 1. 协议 -->
+  <section class="mb-16">
+    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+      01 / 协议
+    </h2>
+    <p class="text-2xl font-semibold mb-6">AIOS 协议是什么</p>
+
+    <div class="prose-zh max-w-none">
+      <p>
+        最早的问题是：我同时用 Codex / Claude / ChatGPT / Hermes 四个 AI，
+        每个都想往我的知识库里写东西，但
+        <strong>没有任何一个能保证它写的是事实而不是自己的幻觉</strong>。
+      </p>
+      <p>
+        AIOS 协议解决三件事：
+      </p>
+      <ul>
+        <li>
+          <strong>分层捕捉</strong>：原始资料 → 项目执行 → 方法论 → 决策 → 复盘
+          → 正式记忆，每一层有自己的目录和写入边界。
+        </li>
+        <li>
+          <strong>多 AI 协作</strong>：每个 AI 只能写自己的收件箱
+          <code>05_AI对话/收件箱/YYYY-MM-DD_模型名.md</code>，
+          正式记忆由「记忆仲裁任务」定期合并。
+        </li>
+        <li>
+          <strong>事实源唯一</strong>：Obsidian VoiceKB 是事实源，
+          飞书只是可读交付版。冲突时以 Obsidian 为准。
+        </li>
+      </ul>
+    </div>
+
+    <h3 class="text-lg font-semibold mt-10 mb-4 text-[var(--color-fg)]">
+      七层架构
+    </h3>
+    <div class="grid md:grid-cols-2 gap-3">
+      {
+        workflow.map((w) => (
+          <div class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded flex items-center gap-4">
+            <span class="text-xs font-mono text-[var(--color-accent)] uppercase tracking-widest w-20 shrink-0">
+              {w.layer}
+            </span>
+            <div class="flex-1 min-w-0">
+              <p class="text-sm text-[var(--color-fg)] mb-0.5">{w.desc}</p>
+              <p class="text-xs font-mono text-[var(--color-fg-dim)] truncate">
+                {w.path}
+              </p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <h3 class="text-lg font-semibold mt-10 mb-4 text-[var(--color-fg)]">
+      多 AI 分工
+    </h3>
+    <div class="overflow-x-auto">
+      <table class="w-full text-sm border border-[var(--color-border)] rounded overflow-hidden">
+        <thead class="bg-[var(--color-bg-elev)]">
+          <tr>
+            <th class="text-left p-3 font-mono text-[var(--color-accent)]">组件</th>
+            <th class="text-left p-3 font-mono text-[var(--color-accent)]">定位</th>
+            <th class="text-left p-3 font-mono text-[var(--color-accent)]">典型场景</th>
+          </tr>
+        </thead>
+        <tbody class="text-[var(--color-fg-muted)]">
+          <tr class="border-t border-[var(--color-border)]">
+            <td class="p-3 font-medium text-[var(--color-fg)]">Obsidian VoiceKB</td>
+            <td class="p-3">长期记忆 / 知识沉淀 / 指挥中心</td>
+            <td class="p-3">事实源、所有 AI 必读</td>
+          </tr>
+          <tr class="border-t border-[var(--color-border)]">
+            <td class="p-3 font-medium text-[var(--color-fg)]">Codex</td>
+            <td class="p-3">本地执行层（读写文件、跑脚本）</td>
+            <td class="p-3">数据清洗、批量处理、CLI 操作</td>
+          </tr>
+          <tr class="border-t border-[var(--color-border)]">
+            <td class="p-3 font-medium text-[var(--color-fg)]">Claude / ChatGPT</td>
+            <td class="p-3">战略推理层（系统设计、复杂判断）</td>
+            <td class="p-3">投放策略、方法论抽象、跨模态评估</td>
+          </tr>
+          <tr class="border-t border-[var(--color-border)]">
+            <td class="p-3 font-medium text-[var(--color-fg)]">Hermes</td>
+            <td class="p-3">本地轻量层（摘要、分类、初稿）</td>
+            <td class="p-3">会议纪要、卡片初稿、批量摘要</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2. Skills -->
+  <section class="mb-16 pt-8 border-t border-[var(--color-border)]">
+    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+      02 / 常用 Skills
+    </h2>
+    <p class="text-2xl font-semibold mb-2">我每天在用的 8 个 Skill</p>
+    <p class="text-[var(--color-fg-muted)] max-w-3xl mb-8">
+      下面每个 Skill 都已经按 AIOS 协议做过审计 —— 标明
+      <code class="font-mono text-[var(--color-accent-soft)]">aios_stage</code>
+      （在链路中的位置）、输入路径、输出路径，
+      不会在我不知情的情况下写到错误位置。
+    </p>
+
+    <div class="space-y-4">
+      {
+        skills.map((s) => (
+          <div class="p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+            <div class="flex flex-wrap items-baseline gap-3 mb-3">
+              <h3 class="font-semibold text-lg text-[var(--color-fg)] font-mono">
+                {s.name}
+              </h3>
+              <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
+                {s.domain}
+              </span>
+            </div>
+            <p class="text-sm text-[var(--color-fg)] mb-3">{s.summary}</p>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-3">
+              <span class="text-[var(--color-accent-soft)] font-semibold">推荐理由：</span>
+              {s.why}
+            </p>
+            <div class="flex flex-wrap gap-4 text-xs font-mono text-[var(--color-fg-dim)] pt-3 border-t border-[var(--color-border)]">
+              <span>AIOS 阶段：{s.stage}</span>
+              <span>位置：{s.where}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 3. 案例 -->
+  <section class="pt-8 border-t border-[var(--color-border)]">
+    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+      03 / 协作案例
+    </h2>
+    <p class="text-2xl font-semibold mb-2">
+      真实 AI × 人协作流程：某品牌服饰防晒衣数据清洗
+    </p>
+    <p class="text-[var(--color-fg-muted)] max-w-3xl mb-8">
+      把"AI 协作"从抽象口号落到具体动作。下面是某次客户项目里
+      <strong>5 天</strong>
+      内人和 AI 的真实分工，对应到 AIOS 的每一层。
+    </p>
+
+    <!-- timeline -->
+    <ol class="relative border-l-2 border-[var(--color-border)] pl-6 space-y-8">
+      <li>
+        <span
+          class="absolute -left-[9px] w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]"
+        ></span>
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-1">
+          DAY 1 · CAPTURE
+        </p>
+        <h3 class="font-semibold mb-2">原始数据投喂 + 项目上下文初始化</h3>
+        <div class="prose-zh max-w-none text-sm">
+          <p>
+            <strong>人</strong>：把 4 份文件丢到 <code>~/Downloads/蕉内数据清洗/</code>：
+            小红书竞品 xlsx（1206 行）、抖音竞品 xls legacy 格式（349 行）、
+            本品执行多个 sheet、status 投流上下文。
+          </p>
+          <p>
+            <strong>AI（Codex）</strong>：读完后写入
+            <code>02_项目/客户工作记录/某品牌防晒衣数据清洗_项目对话沉淀.md</code>，
+            注明工作目录、飞书 doc token、业务对象、交付偏好。
+            <strong class="text-[var(--color-accent-soft)]">关键动作：不动数据，先把"我们要做什么"写清楚。</strong>
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <span
+          class="absolute -left-[9px] w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]"
+        ></span>
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-1">
+          DAY 2 · EXECUTION
+        </p>
+        <h3 class="font-semibold mb-2">数据清洗 + 验证规则</h3>
+        <div class="prose-zh max-w-none text-sm">
+          <p>
+            <strong>AI（Codex）</strong>：跑清洗脚本，每条规则单独验证：
+          </p>
+          <ul>
+            <li>小红书：去 8 行重复表头 → 去企业号 → 去零互动 → 按达人去重保留互动最高 →
+              <strong>1206 行收敛到 544</strong>
+            </li>
+            <li>
+              抖音 .xls legacy：先确认 xlrd 可读，Sheet2 是有效 sheet，去空品牌、零互动、按视频id 去重 →
+              <strong>349 行收敛到 344 条视频 / 208 位达人</strong>
+            </li>
+          </ul>
+          <p>
+            <strong>人</strong>：审阅每条规则的样本，确认无误后保存为
+            <code>防晒衣-竞品_清洗后.xlsx</code> 和
+            <code>0501-0510_抖音汇总_清洗后.xlsx</code>。
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <span
+          class="absolute -left-[9px] w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]"
+        ></span>
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-1">
+          DAY 3 · FEEDBACK
+        </p>
+        <h3 class="font-semibold mb-2">协作偏好校准（这一步最关键）</h3>
+        <div class="prose-zh max-w-none text-sm">
+          <p>
+            <strong>人</strong>反馈了两个关键意见：
+          </p>
+          <ul>
+            <li>"链接点不开" —— AI 把代表案例链接埋在叙述段落里了</li>
+            <li>"序号乱了" —— 用户删掉部分内容后，AI 顺手改了正文判断</li>
+          </ul>
+          <p>
+            <strong>AI（Claude）</strong>：把这两条<strong class="text-[var(--color-accent-soft)]">不是当成 bug，而是写成"协作偏好"</strong>
+            写回项目记忆：
+          </p>
+          <ul>
+            <li>链接类内容用独立 plain URL 表格，不嵌套</li>
+            <li>用户要求"调整序号"时只做大纲巡检和重编号，不动正文判断</li>
+            <li>新数据补充前先 <code>docs +fetch</code> 看现有结构，窄范围追加而不是重写</li>
+          </ul>
+          <p>
+            写入位置：<code>02_项目/客户工作记录/...项目对话沉淀.md</code> 的"飞书文档维护偏好"节。
+            <strong>下次任何 AI 接手这个客户都能复用这套偏好。</strong>
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <span
+          class="absolute -left-[9px] w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]"
+        ></span>
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-1">
+          DAY 4 · DECISION
+        </p>
+        <h3 class="font-semibold mb-2">数据 → 判断 → 决策记录</h3>
+        <div class="prose-zh max-w-none text-sm">
+          <p>
+            <strong>AI（Claude）</strong>：拉横向对比表，把"量堆"幻觉打穿：
+          </p>
+          <ul>
+            <li>主竞品篇数 235，均点赞 118，爆款率 0%</li>
+            <li>头部对手篇数 25，均点赞 18,043，爆款率 56%</li>
+            <li>篇数比 9.4×，但点赞比仅 0.65%</li>
+          </ul>
+          <p>
+            <strong>人</strong>：基于数据做判断 ——「跟进头部对手的精品路线，不跟主竞品的量堆」。
+            决策写入 <code>06_决策记录/2026-05_某品牌防晒衣策略转向.md</code>，
+            注明判断依据、数据样本和"如果...就回退"的止损条件。
+          </p>
+        </div>
+      </li>
+
+      <li>
+        <span
+          class="absolute -left-[9px] w-4 h-4 rounded-full bg-[var(--color-accent)] border-2 border-[var(--color-bg)]"
+        ></span>
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-1">
+          DAY 5 · METHOD
+        </p>
+        <h3 class="font-semibold mb-2">沉淀为可复用方法论</h3>
+        <div class="prose-zh max-w-none text-sm">
+          <p>
+            <strong>AI（Claude + cross-modal-eval）</strong>：把这次的清洗规则、判断口径、
+            两阶段 AI 管线（单竞品摘要 → 横向对比）抽成方法论卡片
+            <a href="/methods/competitor-data-cleaning-sop" class="text-[var(--color-accent)] underline">
+              竞品数据清洗 SOP
+            </a>。
+          </p>
+          <p>
+            cross-modal-eval 检查事实链：原始数据 → 中间清洗结果 → AI 摘要 → 最终结论是否一致，
+            不一致的地方标"待确认"，不入库。
+          </p>
+          <p>
+            <strong>结果</strong>：下一个客户的竞品分析，同样的流程可以 2 天跑完，
+            而不是 5 天。这是 AIOS 的终极目标 —— <strong class="text-[var(--color-accent-soft)]">
+            把"做过的事"变成"下次能更快做的事"</strong>。
+          </p>
+        </div>
+      </li>
+    </ol>
+
+    <div class="mt-12 p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+      <h3 class="font-semibold mb-3">这个案例为什么"AI 协作"和"用 AI"不一样</h3>
+      <div class="prose-zh max-w-none text-sm">
+        <ul>
+          <li>
+            <strong>"用 AI"</strong>是单次对话拿结果，对话窗口关掉信息就没了。
+          </li>
+          <li>
+            <strong>"AI 协作"</strong>是把每次对话沉淀到结构化的知识库里，
+            下次任何一个 AI（甚至我自己）接手时都能 5 分钟读懂上下文继续干。
+          </li>
+          <li>
+            协作偏好（"链接点不开"这种小事）也是资产 ——
+            它让 AI 的产出每次都更贴合我的工作习惯，复利效应在第三个客户开始显现。
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

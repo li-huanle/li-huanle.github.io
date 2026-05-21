@@ -69,9 +69,13 @@ const featuredCases = cases.slice(0, 3);
             title: "AI 工作流落地",
             sub: "AI Productization",
             body: "把元元提示法、跨模态评估、竞品话术分析等工作流封装成 Skill，让业务团队拿来即用。",
+            href: "/aios",
           },
         ].map((card) => (
-          <div class="p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+          <a
+            href={card.href ?? null}
+            class={`block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded transition-colors ${card.href ? "hover:border-[var(--color-accent)]" : ""}`}
+          >
             <p class="text-xs font-mono text-[var(--color-accent)] mb-2">
               {card.sub}
             </p>
@@ -79,7 +83,12 @@ const featuredCases = cases.slice(0, 3);
             <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed">
               {card.body}
             </p>
-          </div>
+            {card.href && (
+              <p class="text-xs text-[var(--color-accent)] font-mono mt-3">
+                看 AIOS 协议 →
+              </p>
+            )}
+          </a>
         ))
       }
     </div>
