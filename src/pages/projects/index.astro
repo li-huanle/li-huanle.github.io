@@ -1,0 +1,72 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Layout title="项目案例 — huanle.li">
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
+      PROJECTS
+    </p>
+    <h1 class="text-4xl font-bold mb-4">项目案例</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-2xl">
+      涵盖客户投放（已脱敏）、独立产品验证和 AI 工具实践三类。
+      每个案例按「问题 → 方法 → 结果」展开，重数据点、轻形容词。
+    </p>
+  </section>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    {
+      projects.map((p) => (
+        <a
+          href={`/projects/${p.id}`}
+          class="block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+        >
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
+              {p.data.status}
+            </span>
+            {p.data.role && (
+              <span class="text-xs text-[var(--color-fg-dim)] font-mono">
+                {p.data.role}
+              </span>
+            )}
+          </div>
+          <h2 class="text-xl font-semibold mb-3 group-hover:text-[var(--color-accent)] transition-colors leading-snug">
+            {p.data.title}
+          </h2>
+          <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-4">
+            {p.data.summary}
+          </p>
+
+          {p.data.metrics.length > 0 && (
+            <div class="grid grid-cols-2 gap-2 mb-4">
+              {p.data.metrics.slice(0, 4).map((m) => (
+                <div class="text-xs">
+                  <div class="text-[var(--color-fg-dim)] font-mono">
+                    {m.label}
+                  </div>
+                  <div class="text-[var(--color-accent-soft)] font-medium mt-0.5">
+                    {m.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          <div class="flex flex-wrap gap-1.5 mt-4">
+            {p.data.stack.slice(0, 4).map((s) => (
+              <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-fg-muted)] font-mono rounded">
+                {s}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))
+    }
+  </div>
+</Layout>

@@ -1,0 +1,36 @@
+---
+const nav = [
+  { href: "/", label: "首页" },
+  { href: "/projects", label: "项目" },
+  { href: "/methods", label: "方法论" },
+  { href: "/blog", label: "笔记" },
+  { href: "/about", label: "关于" },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+---
+
+<header class="border-b border-[var(--color-border)] sticky top-0 backdrop-blur-md bg-black/60 z-50">
+  <div class="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="font-semibold tracking-tight text-lg">
+      <span class="text-[var(--color-accent)]">/</span> huanle.li
+    </a>
+    <nav class="flex items-center gap-6 text-sm">
+      {
+        nav.map((item) => {
+          const active =
+            item.href === "/"
+              ? pathname === "/"
+              : pathname === item.href || pathname.startsWith(item.href + "/");
+          return (
+            <a
+              href={item.href}
+              class={`transition-colors hover:text-[var(--color-accent)] ${active ? "text-[var(--color-accent)]" : "text-[var(--color-fg-muted)]"}`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+  </div>
+</header>

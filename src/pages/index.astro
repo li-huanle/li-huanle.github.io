@@ -1,0 +1,171 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = (await getCollection("projects")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+const methods = (await getCollection("methods")).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+
+const featuredProjects = projects.slice(0, 4);
+const featuredMethods = methods.slice(0, 4);
+---
+
+<Layout>
+  <!-- Hero -->
+  <section class="py-16 md:py-24 border-b border-[var(--color-border)]">
+    <p class="text-sm text-[var(--color-accent)] font-mono mb-4 tracking-widest">
+      AM · 8 年信息流广告经验
+    </p>
+    <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
+      把广告投放和 AI 工作流<br/>
+      <span class="text-[var(--color-accent)]">跑成可交付的资产</span>
+    </h1>
+    <p class="text-lg text-[var(--color-fg-muted)] max-w-2xl leading-relaxed">
+      从巨量引擎和小红书聚光出发，做投放诊断、增长陪跑和 AI 工作流落地。
+      不卖"广告投手"小时工，卖能让账户、内容和组织变得可复盘、可复制的资产。
+    </p>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a
+        href="/projects"
+        class="px-6 py-3 bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+      >
+        看项目案例 →
+      </a>
+      <a
+        href="/methods"
+        class="px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors rounded"
+      >
+        看方法论
+      </a>
+    </div>
+  </section>
+
+  <!-- 三大方向 -->
+  <section class="py-16 border-b border-[var(--color-border)]">
+    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-8">
+      我在做什么
+    </h2>
+    <div class="grid md:grid-cols-3 gap-6">
+      {
+        [
+          {
+            title: "投放诊断",
+            sub: "Account Diagnosis",
+            body: "接手新账户的前 72 小时，用 8 维度清单摸清现状，找出预算浪费的 3 个最严重缺口。",
+          },
+          {
+            title: "增长陪跑",
+            sub: "4-Week Coaching",
+            body: "围绕小红书聚光 / 巨量引擎，按「诊断 → 假设 → 实验 → 复盘」4 周节奏，把内部能力沉淀为可复盘的 SOP。",
+          },
+          {
+            title: "AI 工作流落地",
+            sub: "AI Productization",
+            body: "把元元提示法、跨模态评估、竞品话术分析等工作流封装成 Skill，让业务团队拿来即用。",
+          },
+        ].map((card) => (
+          <div class="p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+            <p class="text-xs font-mono text-[var(--color-accent)] mb-2">
+              {card.sub}
+            </p>
+            <h3 class="text-xl font-semibold mb-3">{card.title}</h3>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed">
+              {card.body}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 精选项目 -->
+  <section class="py-16 border-b border-[var(--color-border)]">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+          精选项目
+        </h2>
+        <p class="text-2xl font-semibold">问题 → 方法 → 结果</p>
+      </div>
+      <a
+        href="/projects"
+        class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
+      >
+        全部项目 →
+      </a>
+    </div>
+    <div class="grid md:grid-cols-2 gap-5">
+      {
+        featuredProjects.map((p) => (
+          <a
+            href={`/projects/${p.id}`}
+            class="block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+          >
+            <div class="flex items-center gap-2 mb-3">
+              <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
+                {p.data.status}
+              </span>
+              {p.data.role && (
+                <span class="text-xs text-[var(--color-fg-dim)] font-mono">
+                  {p.data.role}
+                </span>
+              )}
+            </div>
+            <h3 class="text-lg font-semibold mb-3 group-hover:text-[var(--color-accent)] transition-colors">
+              {p.data.title}
+            </h3>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-4 line-clamp-3">
+              {p.data.summary}
+            </p>
+            {p.data.highlight && (
+              <p class="text-sm text-[var(--color-accent-soft)] border-l-2 border-[var(--color-accent)] pl-3 italic">
+                {p.data.highlight}
+              </p>
+            )}
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- 方法论 -->
+  <section class="py-16">
+    <div class="flex items-end justify-between mb-8">
+      <div>
+        <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
+          方法论库
+        </h2>
+        <p class="text-2xl font-semibold">能跑通的 SOP，不是观点</p>
+      </div>
+      <a
+        href="/methods"
+        class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
+      >
+        全部方法论 →
+      </a>
+    </div>
+    <div class="grid md:grid-cols-2 gap-4">
+      {
+        featuredMethods.map((m) => (
+          <a
+            href={`/methods/${m.id}`}
+            class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+          >
+            <p class="text-xs font-mono text-[var(--color-accent)] mb-2">
+              {m.data.domain}
+            </p>
+            <h3 class="font-semibold mb-2 group-hover:text-[var(--color-accent)] transition-colors leading-snug">
+              {m.data.title}
+            </h3>
+            <p class="text-sm text-[var(--color-fg-muted)] line-clamp-2 leading-relaxed">
+              {m.data.summary}
+            </p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</Layout>

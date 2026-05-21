@@ -1,0 +1,56 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const all = await getCollection("blog");
+const posts = all
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+---
+
+<Layout title="笔记 — huanle.li">
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
+      NOTES
+    </p>
+    <h1 class="text-4xl font-bold mb-4">实操笔记</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-2xl">
+      AI 工具落地、客户沟通、个人系统迭代的零散笔记。
+      和方法论库不同，这里写"过程"，方法论库写"沉淀"。
+    </p>
+  </section>
+
+  {
+    posts.length === 0 ? (
+      <div class="p-8 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded text-center text-[var(--color-fg-muted)]">
+        <p>笔记栏目筹备中，第一篇正在写。</p>
+        <p class="text-sm mt-2 text-[var(--color-fg-dim)]">
+          想先看已沉淀的内容？去
+          <a href="/methods" class="text-[var(--color-accent)] hover:underline">
+            方法论库
+          </a>
+          。
+        </p>
+      </div>
+    ) : (
+      <div class="space-y-4">
+        {posts.map((p) => (
+          <a
+            href={`/blog/${p.id}`}
+            class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+          >
+            <p class="text-xs font-mono text-[var(--color-fg-dim)] mb-2">
+              {p.data.date.toISOString().slice(0, 10)}
+            </p>
+            <h2 class="font-semibold mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+              {p.data.title}
+            </h2>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed">
+              {p.data.summary}
+            </p>
+          </a>
+        ))}
+      </div>
+    )
+  }
+</Layout>
