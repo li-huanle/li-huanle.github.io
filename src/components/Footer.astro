@@ -3,15 +3,67 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="border-t border-[var(--color-border)] mt-32">
-  <div class="max-w-5xl mx-auto px-6 py-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-sm text-[var(--color-fg-muted)]">
-    <div>© {year} Huanworks · 广告增长 × 数据分析 × AI 工作流</div>
-    <div class="flex items-center gap-5">
-      <a href="mailto:me@huanworks.com" class="hover:text-[var(--color-accent)] transition-colors">
-        me@huanworks.com
+  <div class="max-w-5xl mx-auto px-6 py-10 text-sm text-[var(--color-fg-muted)]">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div>© {year} Huanworks · 广告增长 × 数据分析 × AI 工作流</div>
+      <div class="flex flex-wrap items-center gap-5">
+        <a href="mailto:me@huanworks.com" class="hover:text-[var(--color-accent)] transition-colors">
+          me@huanworks.com
+        </a>
+        <a href="https://github.com/li-huanle" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-5 pt-5 border-t border-[var(--color-border)] flex flex-wrap items-center gap-x-5 gap-y-2">
+      <span class="font-mono text-xs tracking-widest">友链</span>
+      <a href="https://valuristories.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
+        Valuri Stories
       </a>
-      <a href="https://github.com/li-huanle" target="_blank" rel="noopener" class="hover:text-[var(--color-accent)] transition-colors">
-        GitHub
+      <a href="https://video10x.app/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
+        Video10x
       </a>
     </div>
   </div>
+
+  <div
+    id="email-copy-feedback"
+    class="fixed left-1/2 bottom-6 z-50 -translate-x-1/2 rounded-full bg-[var(--color-fg)] px-4 py-2 text-sm text-[var(--color-bg)] shadow-lg opacity-0 pointer-events-none transition-opacity"
+    role="status"
+    aria-live="polite"
+  ></div>
 </footer>
+
+<script>
+  const email = "me@huanworks.com";
+  const feedback = document.querySelector<HTMLElement>("#email-copy-feedback");
+  let feedbackTimer: number | undefined;
+
+  const showFeedback = (message: string) => {
+    if (!feedback) return;
+    feedback.textContent = message;
+    feedback.classList.remove("opacity-0");
+    window.clearTimeout(feedbackTimer);
+    feedbackTimer = window.setTimeout(() => feedback.classList.add("opacity-0"), 2400);
+  };
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(email);
+      showFeedback(`邮箱已复制：${email}`);
+    } catch {
+      window.location.href = `mailto:${email}`;
+      showFeedback("正在打开邮件客户端…");
+    }
+  };
+
+  document.querySelectorAll<HTMLAnchorElement>(`a[href="mailto:${email}"]`).forEach((link) => {
+    link.title = "点击复制邮箱地址";
+    link.addEventListener("click", (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      void copyEmail();
+    });
+  });
+</script>
