@@ -12,6 +12,8 @@ const {
   title = "huanle.li — 广告增长 × 数据分析 × AI 工作流",
   description = "8 年信息流广告经验，聚焦广告增长、数据分析、AI 自动化、知识库与独立产品实践。",
 } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -21,6 +23,12 @@ const {
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta name="twitter:card" content="summary_large_image" />
     <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
