@@ -7,6 +7,7 @@
 - 互联网营销与广告投放：小红书 / 抖音、KFS / BKFS、搜索、人群与内容策略
 - 数据分析与管理：数据清洗、指标口径、异常诊断、实验与经营复盘
 - AI / 自动化 / 知识库：Obsidian、RAG、本地 LLM、Skills、Agent、n8n 工作流
+- GEO：从问题库、基线诊断、品牌事实、内容信源到监测验收与合规
 - 独立产品与技术实践：从高频业务动作到窄 MVP、验证和产品化
 
 贯穿所有内容的方法是：**数据 → 洞察 → 行动 → 结果 → 规则回写**。
@@ -28,6 +29,7 @@ src/
 │   ├── projects/   项目案例 (md)
 │   ├── methods/    方法论卡片 (md)
 │   ├── cases/      外部公开案例研究 (md)
+│   ├── geo/        GEO 系列指南 (md)
 │   └── blog/       实操笔记 (md)
 ├── layouts/
 ├── components/
@@ -36,6 +38,7 @@ src/
     ├── projects/
     ├── methods/
     ├── cases/
+    ├── geo/
     ├── aios.astro
     ├── blog/
     └── about.astro

@@ -1,0 +1,76 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const chapters = (await getCollection("geo")).sort(
+  (a, b) => a.data.chapter - b.data.chapter,
+);
+---
+
+<Layout
+  title="GEO 实战指南：从品牌诊断到效果验收 — Huanworks"
+  description="一套可执行、可复测、守合规边界的 GEO 实战指南，覆盖生成式引擎优化认知、问题库、基线诊断、品牌事实资产、内容工程、信源分发、监测验收和 8 周路线图。"
+>
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
+      GEO FIELD GUIDE
+    </p>
+    <h1 class="text-4xl md:text-5xl font-bold mb-5 leading-tight">
+      GEO 实战指南
+    </h1>
+    <p class="text-lg text-[var(--color-fg-muted)] max-w-3xl leading-relaxed">
+      GEO 不是批量发软文，也不是保证某个 AI 把品牌排第一。它是一套围绕
+      <strong class="text-[var(--color-fg)]">用户问题、品牌事实、可信信源与重复测量</strong>
+      展开的信息工程。这个系列按真实项目顺序拆成 8 章，从零跑完“先测量、再建设、再复测”。
+    </p>
+    <div class="mt-8 grid sm:grid-cols-4 gap-3 text-sm">
+      {[
+        ["01", "先做基线"],
+        ["02", "事实优先"],
+        ["03", "证据可追溯"],
+        ["04", "结果可复测"],
+      ].map(([n, text]) => (
+        <div class="p-3 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+          <span class="text-[var(--color-accent)] font-mono mr-2">{n}</span>{text}
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-14">
+    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-5">
+      8 CHAPTERS
+    </h2>
+    <div class="space-y-4">
+      {chapters.map((item) => (
+        <a
+          href={`/geo/${item.id}`}
+          class="grid md:grid-cols-[80px_1fr_auto] gap-3 md:gap-6 items-start p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+        >
+          <span class="text-2xl font-mono text-[var(--color-accent)]">
+            {String(item.data.chapter).padStart(2, "0")}
+          </span>
+          <div>
+            <h2 class="text-xl font-semibold mb-2 group-hover:text-[var(--color-accent)] transition-colors">
+              {item.data.title}
+            </h2>
+            <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed">
+              {item.data.summary}
+            </p>
+          </div>
+          <span class="text-sm text-[var(--color-fg-dim)] group-hover:text-[var(--color-accent)]">阅读 →</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+    <h2 class="font-semibold mb-3">这套指南不承诺什么</h2>
+    <ul class="text-sm text-[var(--color-fg-muted)] leading-relaxed list-disc pl-5 space-y-1">
+      <li>不承诺在指定时间进入任何 AI 产品的固定排名。</li>
+      <li>不把一次回答截图当作稳定结果，也不把所有线索归因给 GEO。</li>
+      <li>不使用虚假案例、伪中立榜单、竞品攻击、隐藏指令或 RAG 投毒。</li>
+      <li>平台、模型与法规会变化，执行时需重新核验当前规则。</li>
+    </ul>
+  </section>
+</Layout>

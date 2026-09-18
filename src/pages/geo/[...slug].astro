@@ -1,0 +1,70 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("geo");
+  const ordered = [...entries].sort((a, b) => a.data.chapter - b.data.chapter);
+  return ordered.map((entry, index) => ({
+    params: { slug: entry.id },
+    props: {
+      entry,
+      previous: ordered[index - 1] ?? null,
+      next: ordered[index + 1] ?? null,
+    },
+  }));
+}
+
+const { entry, previous, next } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  description: data.summary,
+  datePublished: data.date.toISOString(),
+  dateModified: (data.updated ?? data.date).toISOString(),
+  author: { "@type": "Person", name: "Huanle" },
+  publisher: { "@type": "Organization", name: "Huanworks" },
+  mainEntityOfPage: canonicalURL.toString(),
+  keywords: [data.primaryKeyword, ...data.tags].join(", "),
+};
+---
+
+<Layout title={`${data.title} — Huanworks`} description={data.summary}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <article>
+    <a href="/geo" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] mb-8 inline-block transition-colors">
+      ← 返回 GEO 指南
+    </a>
+    <header class="border-b border-[var(--color-border)] pb-8 mb-8">
+      <p class="text-xs font-mono text-[var(--color-accent)] mb-3">
+        CHAPTER {String(data.chapter).padStart(2, "0")} · {data.primaryKeyword}
+      </p>
+      <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4">{data.title}</h1>
+      <p class="text-lg text-[var(--color-fg-muted)] leading-relaxed max-w-3xl">{data.summary}</p>
+      <div class="flex flex-wrap gap-2 mt-5">
+        {data.tags.map((tag) => (
+          <span class="text-xs px-2 py-1 bg-[var(--color-bg-elev)] text-[var(--color-fg-dim)] font-mono rounded">#{tag}</span>
+        ))}
+      </div>
+    </header>
+    <div class="prose-zh max-w-none"><Content /></div>
+    <nav class="grid sm:grid-cols-2 gap-4 mt-14 pt-8 border-t border-[var(--color-border)]">
+      {previous ? (
+        <a href={`/geo/${previous.id}`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+          <span class="text-xs text-[var(--color-fg-dim)]">上一篇</span>
+          <p class="mt-1 text-sm">← {previous.data.title}</p>
+        </a>
+      ) : <span />}
+      {next && (
+        <a href={`/geo/${next.id}`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors text-right">
+          <span class="text-xs text-[var(--color-fg-dim)]">下一篇</span>
+          <p class="mt-1 text-sm">{next.data.title} →</p>
+        </a>
+      )}
+    </nav>
+  </article>
+</Layout>

@@ -57,4 +57,17 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { projects, methods, cases, blog };
+const geo = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/geo" }),
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    chapter: z.number(),
+    primaryKeyword: z.string(),
+    tags: z.array(z.string()).default([]),
+    date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+  }),
+});
+
+export const collections = { projects, methods, cases, blog, geo };
