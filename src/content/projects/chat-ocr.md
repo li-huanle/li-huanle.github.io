@@ -12,8 +12,8 @@ metrics:
     value: macOS (Apple Silicon)
   - label: 打包形式
     value: DMG
-  - label: 项目位置
-    value: ~/ChatOCR
+  - label: 数据处理
+    value: 本地优先
 date: 2026-05-04
 order: 4
 ---

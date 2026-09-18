@@ -1,6 +1,15 @@
 # huanle.li — 个人主页
 
-广告增长 × AI 实践者的个人主页 / 项目案例 / 方法论库。
+广告增长 × 数据分析 × AI 工作流实践者的个人主页。
+
+这里不是履历堆砌，而是一组经过脱敏的项目案例、方法卡和技术实践：
+
+- 互联网营销与广告投放：小红书 / 抖音、KFS / BKFS、搜索、人群与内容策略
+- 数据分析与管理：数据清洗、指标口径、异常诊断、实验与经营复盘
+- AI / 自动化 / 知识库：Obsidian、RAG、本地 LLM、Skills、Agent、n8n 工作流
+- 独立产品与技术实践：从高频业务动作到窄 MVP、验证和产品化
+
+贯穿所有内容的方法是：**数据 → 洞察 → 行动 → 结果 → 规则回写**。
 
 部署：[https://li-huanle.github.io](https://li-huanle.github.io)
 
@@ -18,6 +27,7 @@ src/
 ├── content/
 │   ├── projects/   项目案例 (md)
 │   ├── methods/    方法论卡片 (md)
+│   ├── cases/      外部公开案例研究 (md)
 │   └── blog/       实操笔记 (md)
 ├── layouts/
 ├── components/
@@ -25,6 +35,8 @@ src/
     ├── index.astro
     ├── projects/
     ├── methods/
+    ├── cases/
+    ├── aios.astro
     ├── blog/
     └── about.astro
 ```
@@ -47,6 +59,14 @@ npm run preview
 新增笔记：在 `src/content/blog/` 新建。
 
 schema 定义见 `src/content.config.ts`。
+
+## 内容发布原则
+
+- 项目案例只保留可迁移的方法、相对变化和聚合结论
+- 不提交客户身份、原始数据、精确预算、账号凭证、内部路径或个人隐私
+- 亲自实践、外部案例和探索性判断明确区分
+- 涉及时效的后台指标、平台规则和工具版本，发布前重新核验
+- RAG / 搜索结果必须能回到来源；“检索命中”不等于“已经验证”
 
 ## 部署
 

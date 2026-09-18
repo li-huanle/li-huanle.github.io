@@ -26,7 +26,7 @@ Stage 2：所有摘要 → AI 横向竞品对比 + 策略建议
 
 ## 关键技术参数（踩过的坑）
 
-- LM Studio 本地 API：`http://localhost:1234/v1`，API key 随意
+- LM Studio 可通过本地兼容接口调用；公开文档只保留调用方式，不记录任何真实凭证
 - Qwen3.5-9B 必须设 `max_tokens >= 3500` —— 默认开启思考模式，思考过程先吃 token 配额
 - Qwen3 返回内容在 `response.choices[0].message.content`，`reasoning_content` 是思考过程，不要混用
 - 上下文窗口约 4K，大量数据必须极度精简（TOP5/TOP10），不能整表喂

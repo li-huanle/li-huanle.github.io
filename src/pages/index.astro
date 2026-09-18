@@ -21,15 +21,15 @@ const featuredCases = cases.slice(0, 3);
   <!-- Hero -->
   <section class="py-16 md:py-24 border-b border-[var(--color-border)]">
     <p class="text-sm text-[var(--color-accent)] font-mono mb-4 tracking-widest">
-      AM · 8 年信息流广告经验
+      GROWTH OPERATOR · 8 年信息流广告经验
     </p>
     <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-      把广告投放和 AI 工作流<br/>
-      <span class="text-[var(--color-accent)]">跑成可交付的资产</span>
+      把数据、投放与 AI 工作流<br/>
+      <span class="text-[var(--color-accent)]">跑成可复用的增长系统</span>
     </h1>
     <p class="text-lg text-[var(--color-fg-muted)] max-w-2xl leading-relaxed">
-      从小红书聚光、巨量引擎和本地生活场景出发，做投放诊断、KFS/BKFS
-      增长方案和 AI 工作流落地。不卖"广告投手"小时工，卖能让账户、内容和组织变得可复盘、可复制的资产。
+      从小红书聚光、巨量引擎与真实业务数据出发，把问题拆成指标、把数据变成判断、把判断落成动作，
+      再把有效经验沉淀为 SOP、知识库、Agent 或独立产品。
     </p>
     <div class="mt-10 flex flex-wrap gap-4">
       <a
@@ -47,29 +47,36 @@ const featuredCases = cases.slice(0, 3);
     </div>
   </section>
 
-  <!-- 三大方向 -->
+  <!-- 四大方向 -->
   <section class="py-16 border-b border-[var(--color-border)]">
     <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-8">
       我在做什么
     </h2>
-    <div class="grid md:grid-cols-3 gap-6">
+    <div class="grid md:grid-cols-2 gap-6">
       {
         [
           {
             title: "投放诊断",
             sub: "Account Diagnosis",
-            body: "接手新账户的前 72 小时，用 8 维度清单摸清现状，找出预算浪费的 3 个最严重缺口。",
+            body: "围绕客户核心 KPI，拆账户、内容、人群、搜索与承接链路，先确认事实，再排优化优先级。",
           },
           {
-            title: "KFS / BKFS 增长方案",
-            sub: "Campaign Architecture",
-            body: "把新品上市、旅行拉新、本地生活到店等目标拆成内容、人群、搜索和预算节奏，让方案能直接进入执行和复盘。",
+            title: "数据分析与经营复盘",
+            sub: "Data → Insight → Action",
+            body: "统一口径、清洗数据、定位异常，把日报和复盘从报数升级为可追踪的动作清单与验证结果。",
+            href: "/methods/growth-data-action-loop",
           },
           {
-            title: "AI 工作流落地",
-            sub: "AI Productization",
-            body: "把竞品数据清洗、话术分析、会议资料归档和知识复用封装成 Skill，让业务团队拿来即用。",
+            title: "AI / 自动化 / 知识库",
+            sub: "AIOS & Knowledge Workflow",
+            body: "用 Obsidian、RAG、本地 LLM、Skills 与可选的 n8n 编排层，建立有来源、有边界、可验收的工作流。",
             href: "/aios",
+          },
+          {
+            title: "独立产品与技术实践",
+            sub: "Product Experiments",
+            body: "从高频业务动作里发现需求，用窄 MVP 验证使用与付费，再决定是否工程化为工具、服务或 SaaS。",
+            href: "/projects",
           },
         ].map((card) => (
           <a
@@ -85,7 +92,7 @@ const featuredCases = cases.slice(0, 3);
             </p>
             {card.href && (
               <p class="text-xs text-[var(--color-accent)] font-mono mt-3">
-                看 AIOS 协议 →
+                查看详情 →
               </p>
             )}
           </a>
