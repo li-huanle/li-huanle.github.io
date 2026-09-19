@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ContactCta from "../components/ContactCta.astro";
 import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects")).sort(
@@ -15,68 +16,69 @@ const cases = (await getCollection("cases")).sort(
 const featuredProjects = projects.slice(0, 4);
 const featuredMethods = methods.slice(0, 4);
 const featuredCases = cases.slice(0, 3);
+const contactHref = `mailto:me@huanworks.com?subject=${encodeURIComponent("Huanworks 项目沟通")}`;
 ---
 
 <Layout>
   <!-- Hero -->
   <section class="py-16 md:py-24 border-b border-[var(--color-border)]">
     <p class="text-sm text-[var(--color-accent)] font-mono mb-4 tracking-widest">
-      GROWTH OPERATOR · 8 年信息流广告经验
+      增长投放操盘手 · 8 年信息流经验 · 小红书聚光 / 巨量引擎
     </p>
     <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-      把数据、投放与 AI 工作流<br/>
-      <span class="text-[var(--color-accent)]">跑成可复用的增长系统</span>
+      把投放数据变成增长动作<br/>
+      <span class="text-[var(--color-accent)]">再把有效动作沉淀成 AI 工作流</span>
     </h1>
-    <p class="text-lg text-[var(--color-fg-muted)] max-w-2xl leading-relaxed">
-      从小红书聚光、巨量引擎与真实业务数据出发，把问题拆成指标、把数据变成判断、把判断落成动作，
-      再把有效经验沉淀为 SOP、知识库、Agent 或独立产品。
+    <p class="text-lg text-[var(--color-fg-muted)] max-w-3xl leading-relaxed">
+      我帮助品牌方、代理团队和增长负责人诊断投放问题，统一数据口径，优化内容、人群、搜索与承接链路，
+      并把高频交付固化成 SOP、知识库和 Agent。
     </p>
     <div class="mt-10 flex flex-wrap gap-4">
       <a
-        href="/projects"
-        class="px-6 py-3 bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+        href={contactHref}
+        class="min-h-12 px-6 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
       >
-        看项目案例 →
+        发我一个真实问题 →
       </a>
       <a
-        href="/methods"
-        class="px-6 py-3 border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors rounded"
+        href="/projects"
+        class="min-h-12 px-6 inline-flex items-center border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors rounded"
       >
-        看方法论
+        查看已交付项目
       </a>
+    </div>
+    <div class="mt-10 grid sm:grid-cols-3 gap-3 max-w-3xl text-sm">
+      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">8 年信息流投放经验</div>
+      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">巨量引擎 × 小红书聚光</div>
+      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">标注角色、状态与证据边界</div>
     </div>
   </section>
 
-  <!-- 四大方向 -->
+  <!-- 三大方向 -->
   <section class="py-16 border-b border-[var(--color-border)]">
     <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-8">
       我在做什么
     </h2>
-    <div class="grid md:grid-cols-2 gap-6">
+    <div class="grid md:grid-cols-3 gap-6">
       {
         [
           {
-            title: "投放诊断",
+            title: "投放诊断与增长策略",
             sub: "Account Diagnosis",
-            body: "围绕客户核心 KPI，拆账户、内容、人群、搜索与承接链路，先确认事实，再排优化优先级。",
+            body: "从业务目标和核心 KPI 出发，定位账户、内容、人群、搜索与承接链路中的关键问题，给出可验证的优化动作。",
+            href: "/methods/account-diagnosis-checklist",
           },
           {
-            title: "数据分析与经营复盘",
+            title: "数据复盘与经营判断",
             sub: "Data → Insight → Action",
-            body: "统一口径、清洗数据、定位异常，把日报和复盘从报数升级为可追踪的动作清单与验证结果。",
+            body: "统一口径、清洗数据、拆解异常，把日报和复盘从“报数字”升级为可追踪、可验证的经营动作。",
             href: "/methods/growth-data-action-loop",
           },
           {
-            title: "AI / 自动化 / 知识库",
+            title: "AI 工作流与知识库落地",
             sub: "AIOS & Knowledge Workflow",
-            body: "用 Obsidian、RAG、本地 LLM、Skills 与可选的 n8n 编排层，建立有来源、有边界、可验收的工作流。",
+            body: "把已经跑通的高频任务沉淀为 SOP、知识库、Skill 或 Agent，在保留人工审核的前提下减少重复劳动。",
             href: "/aios",
-          },
-          {
-            title: "独立产品与技术实践",
-            sub: "Product Experiments",
-            body: "从高频业务动作里发现需求，用窄 MVP 验证使用与付费，再决定是否工程化为工具、服务或 SaaS。",
-            href: "/projects",
           },
         ].map((card) => (
           <a
@@ -248,4 +250,6 @@ const featuredCases = cases.slice(0, 3);
       }
     </div>
   </section>
+
+  <ContactCta />
 </Layout>

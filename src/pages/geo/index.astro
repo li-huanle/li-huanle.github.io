@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ContactCta from "../../components/ContactCta.astro";
 import { getCollection } from "astro:content";
 
 const chapters = (await getCollection("geo")).sort(
@@ -73,4 +74,8 @@ const chapters = (await getCollection("geo")).sort(
       <li>平台、模型与法规会变化，执行时需重新核验当前规则。</li>
     </ul>
   </section>
+
+  <div class="mt-10">
+    <ContactCta compact />
+  </div>
 </Layout>

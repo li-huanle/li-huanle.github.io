@@ -14,6 +14,11 @@ const projects = defineCollection({
       .array(z.object({ label: z.string(), value: z.string() }))
       .default([]),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
+    deliverables: z.array(z.string()).default([]),
+    observed: z.array(z.string()).default([]),
+    unverified: z.array(z.string()).default([]),
+    evidence: z.string().optional(),
     order: z.number().default(100),
   }),
 });
@@ -26,6 +31,7 @@ const methods = defineCollection({
     domain: z.enum(["广告增长", "AI 工作流", "知识管理", "个人发展"]),
     tags: z.array(z.string()).default([]),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
     order: z.number().default(100),
   }),
 });
@@ -42,6 +48,7 @@ const cases = defineCollection({
     tags: z.array(z.string()).default([]),
     takeaway: z.string().optional(),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
     order: z.number().default(100),
   }),
 });
@@ -52,6 +59,7 @@ const blog = defineCollection({
     title: z.string(),
     summary: z.string(),
     date: z.coerce.date(),
+    updated: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),

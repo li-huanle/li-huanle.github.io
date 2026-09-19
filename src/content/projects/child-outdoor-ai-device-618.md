@@ -15,6 +15,14 @@ metrics:
   - label: 搜索词包
     value: 6 组
 date: 2026-05-27
+deliverables:
+  - 暑期户外带娃场景定位
+  - 6 类人群包与 6 组搜索词规划
+observed: []
+unverified:
+  - 公开材料未包含投放上线后的效果回读
+  - CPM、CPE、互动和搜索承接仍需按实际投放数据验收
+evidence: 当前公开页展示的是规划方法与交付结构，不构成效果案例。
 order: 1
 ---
 

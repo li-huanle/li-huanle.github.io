@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ContactCta from "../../components/ContactCta.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -33,8 +34,7 @@ const jsonLd = {
 };
 ---
 
-<Layout title={`${data.title} — Huanworks`} description={data.summary}>
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<Layout title={`${data.title} — Huanworks`} description={data.summary} type="article" schema={jsonLd}>
   <article>
     <a href="/geo" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] mb-8 inline-block transition-colors">
       ← 返回 GEO 指南
@@ -66,5 +66,8 @@ const jsonLd = {
         </a>
       )}
     </nav>
+    <div class="mt-10">
+      <ContactCta compact />
+    </div>
   </article>
 </Layout>

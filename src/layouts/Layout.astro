@@ -6,14 +6,49 @@ import Footer from "../components/Footer.astro";
 interface Props {
   title?: string;
   description?: string;
+  type?: "website" | "article";
+  schema?: Record<string, unknown>;
 }
 
 const {
-  title = "Huanworks — 广告增长 × 数据分析 × AI 工作流",
-  description = "8 年信息流广告经验，聚焦广告增长、数据分析、AI 自动化、知识库与独立产品实践。",
+  title = "增长投放操盘手与 AI 工作流实践 | Huanworks",
+  description = "增长投放操盘手 huanle 的个人站，分享小红书聚光、巨量引擎、数据复盘、AI 工作流、知识库与脱敏项目案例。",
+  type = "website",
+  schema,
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const siteURL = new URL("/", Astro.site);
+const aboutURL = new URL("/about/", Astro.site);
+const baseJsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteURL}#website`,
+      url: siteURL.toString(),
+      name: "Huanworks",
+      inLanguage: "zh-CN",
+      publisher: { "@id": `${aboutURL}#person` },
+    },
+    {
+      "@type": "Person",
+      "@id": `${aboutURL}#person`,
+      name: "huanle",
+      url: aboutURL.toString(),
+      jobTitle: "增长投放操盘手",
+      sameAs: ["https://github.com/li-huanle"],
+      knowsAbout: [
+        "信息流广告",
+        "小红书聚光",
+        "巨量引擎",
+        "数据分析",
+        "AI 工作流",
+        "知识库与 RAG",
+      ],
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -22,13 +57,18 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <meta name="description" content={description} />
+    <meta name="author" content="huanle" />
     <meta name="generator" content={Astro.generator} />
     <link rel="canonical" href={canonicalURL} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Huanworks" />
+    <meta property="og:locale" content="zh_CN" />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <link
       rel="preconnect"
       href="https://fonts.googleapis.com"
@@ -40,11 +80,8 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
       rel="stylesheet"
     />
     <title>{title}</title>
-    <script
-      is:inline
-      async
-      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9604485100978629"
-      crossorigin="anonymous"></script>
+    <script type="application/ld+json" set:html={JSON.stringify(baseJsonLd)} />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
   </head>
   <body>
     <Header />

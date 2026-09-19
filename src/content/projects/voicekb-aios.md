@@ -15,6 +15,15 @@ metrics:
   - label: 发布原则
     value: 脱敏副本
 date: 2026-09-19
+updated: 2026-09-19
+deliverables:
+  - 本地 Markdown 事实源与分层治理结构
+  - 摄入、仲裁、检索、应用和回写闭环
+observed:
+  - 已在真实项目中用于检索旧经验、执行任务与回写纠正
+unverified:
+  - 不以笔记数量或单次检索命中证明系统效果
+evidence: 公开页展示脱敏后的系统结构；敏感资料、客户原始数据与本机路径不对外同步。
 order: 1
 ---
 

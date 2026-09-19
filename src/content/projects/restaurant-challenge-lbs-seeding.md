@@ -15,6 +15,13 @@ metrics:
   - label: 复盘指标
     value: 看后搜 / 店访 / 到店
 date: 2026-05-20
+deliverables:
+  - 5 类内容角色与对应人群意图
+  - 门店周边 LBS、深度人群与再营销分层原则
+observed: []
+unverified:
+  - 公开材料未包含上线后的店访、团购或到店结果
+evidence: 当前公开页展示的是已交付的人群策略，不把策略交付写成业务效果。
 order: 3
 ---
 

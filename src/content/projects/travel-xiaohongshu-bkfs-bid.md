@@ -15,6 +15,13 @@ metrics:
   - label: 方案形态
     value: 讲标母稿
 date: 2026-05-27
+deliverables:
+  - BKFS 全域增长讲标母稿
+  - APP 拉新、度假客资、达人内容与专业号预算结构
+observed: []
+unverified:
+  - 竞标方案交付不等于后续执行效果已验证
+evidence: 当前公开页仅展示脱敏后的方案框架与预算逻辑，不披露竞标结果或客户经营数据。
 order: 2
 ---
 

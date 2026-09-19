@@ -1,8 +1,27 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ContactCta from "../components/ContactCta.astro";
+
+const profileSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  name: "关于 huanle",
+  url: "https://www.huanworks.com/about/",
+  mainEntity: {
+    "@type": "Person",
+    name: "huanle",
+    url: "https://www.huanworks.com/about/",
+    jobTitle: "增长投放操盘手与 AI 工作流实践者",
+    sameAs: ["https://github.com/li-huanle"],
+  },
+};
 ---
 
-<Layout title="关于 — Huanworks">
+<Layout
+  title="关于 huanle — 增长投放与 AI 工作流 | Huanworks"
+  description="了解 huanle 的增长投放经验、工作方法、能力边界和合作方向，涵盖广告增长、数据分析、AI 工作流与知识库落地。"
+  schema={profileSchema}
+>
   <section class="py-12 border-b border-[var(--color-border)] mb-12">
     <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">
       ABOUT
@@ -12,15 +31,17 @@ import Layout from "../layouts/Layout.astro";
 
   <div class="prose-zh max-w-3xl">
     <p class="text-lg leading-relaxed">
-      你好，我是
-      <strong>huanle</strong>。8 年信息流广告经验，AM
-      （客户经理）与增长操盘角色，主战场是巨量引擎和小红书聚光。
+      你好，我是 <strong>huanle</strong>，一名有 8 年信息流广告经验的增长投放操盘手。
     </p>
 
     <p>
-      我长期处理的不是单一投放按钮，而是从业务目标、指标口径、内容与人群策略，
-      一直走到数据复盘和下一轮动作。近两年把这套经验继续沉淀为 AI 工作流、
-      本地知识库与小型产品实验。
+      我的主战场是小红书聚光和巨量引擎。工作重点不是单独操作某个投放后台，
+      而是把业务目标、指标口径、内容、人群、搜索承接和复盘动作连接成一套能持续迭代的增长系统。
+    </p>
+
+    <p>
+      近两年，我进一步把这些高频交付沉淀为 AI 工作流、本地知识库和 Agent：
+      让事实有来源、判断可复用、动作能验收，同时保留必要的人工审核。
     </p>
 
     <h2>我的工作方法</h2>
@@ -86,5 +107,9 @@ import Layout from "../layouts/Layout.astro";
         class="underline text-[var(--color-accent)]">GitHub @li-huanle</a
       >。
     </p>
+  </div>
+
+  <div class="mt-14">
+    <ContactCta compact />
   </div>
 </Layout>

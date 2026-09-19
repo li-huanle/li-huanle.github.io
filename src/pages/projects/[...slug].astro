@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ContactCta from "../../components/ContactCta.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -13,10 +14,24 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await render(project);
 const { data } = project;
-const dateStr = data.date.toISOString().slice(0, 10);
+const updatedDate = data.updated ?? data.date;
+const updatedStr = updatedDate.toISOString().slice(0, 10);
+const statusNeedsRefresh = data.status !== "已交付" && Date.now() - updatedDate.getTime() > 90 * 86400000;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  description: data.summary,
+  datePublished: data.date.toISOString(),
+  dateModified: updatedDate.toISOString(),
+  inLanguage: "zh-CN",
+  author: { "@type": "Person", name: "huanle", url: new URL("/about/", Astro.site).toString() },
+  mainEntityOfPage: canonicalURL.toString(),
+};
 ---
 
-<Layout title={`${data.title} — Huanworks`} description={data.summary}>
+<Layout title={`${data.title} — Huanworks`} description={data.summary} type="article" schema={articleJsonLd}>
   <article>
     <a
       href="/projects"
@@ -35,7 +50,7 @@ const dateStr = data.date.toISOString().slice(0, 10);
           </span>
         )}
         <span class="text-xs font-mono text-[var(--color-fg-dim)]">
-          {dateStr}
+          状态截至 {updatedStr}
         </span>
       </div>
       <h1 class="text-3xl md:text-4xl font-bold leading-tight mb-4">
@@ -73,10 +88,53 @@ const dateStr = data.date.toISOString().slice(0, 10);
           </div>
         )
       }
+
+      {statusNeedsRefresh && (
+        <p class="mt-6 p-3 border border-[var(--color-border)] rounded text-sm text-[var(--color-fg-muted)]">
+          页面状态已超过 90 天未更新，“{data.status}”仅代表最后一次公开记录，不代表项目当前仍在执行。
+        </p>
+      )}
     </header>
+
+    <section class="mb-10 grid md:grid-cols-3 gap-4" aria-labelledby="evidence-heading">
+      <h2 id="evidence-heading" class="sr-only">结果与证据</h2>
+      <div class="p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+        <p class="text-xs font-mono text-[var(--color-accent)] tracking-widest mb-3">已完成</p>
+        {data.deliverables.length > 0 ? (
+          <ul class="text-sm text-[var(--color-fg-muted)] list-disc pl-5 space-y-2">
+            {data.deliverables.map((item) => <li>{item}</li>)}
+          </ul>
+        ) : <p class="text-sm text-[var(--color-fg-muted)]">公开页暂未拆分交付物。</p>}
+      </div>
+      <div class="p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+        <p class="text-xs font-mono text-[var(--color-accent)] tracking-widest mb-3">已观察到</p>
+        {data.observed.length > 0 ? (
+          <ul class="text-sm text-[var(--color-fg-muted)] list-disc pl-5 space-y-2">
+            {data.observed.map((item) => <li>{item}</li>)}
+          </ul>
+        ) : <p class="text-sm text-[var(--color-fg-muted)]">暂无可公开的结果数据，不用交付状态替代业务结果。</p>}
+      </div>
+      <div class="p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded">
+        <p class="text-xs font-mono text-[var(--color-accent)] tracking-widest mb-3">尚未验证</p>
+        {data.unverified.length > 0 ? (
+          <ul class="text-sm text-[var(--color-fg-muted)] list-disc pl-5 space-y-2">
+            {data.unverified.map((item) => <li>{item}</li>)}
+          </ul>
+        ) : <p class="text-sm text-[var(--color-fg-muted)]">暂无补充项。</p>}
+      </div>
+      {data.evidence && (
+        <p class="md:col-span-3 p-4 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)] text-sm text-[var(--color-fg-muted)]">
+          <strong class="text-[var(--color-fg)]">证据边界：</strong>{data.evidence}
+        </p>
+      )}
+    </section>
 
     <div class="prose-zh max-w-none">
       <Content />
+    </div>
+
+    <div class="mt-14">
+      <ContactCta compact />
     </div>
   </article>
 </Layout>

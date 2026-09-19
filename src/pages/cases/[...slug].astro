@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ContactCta from "../../components/ContactCta.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -17,9 +18,22 @@ const dateStr = data.date.toISOString().slice(0, 10);
 const sourceDateStr = data.sourceDate
   ? data.sourceDate.toISOString().slice(0, 10)
   : null;
+const updatedDate = data.updated ?? data.date;
+const articleJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: data.title,
+  description: data.summary,
+  datePublished: data.date.toISOString(),
+  dateModified: updatedDate.toISOString(),
+  inLanguage: "zh-CN",
+  author: { "@type": "Person", name: "huanle", url: new URL("/about/", Astro.site).toString() },
+  mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
+  keywords: data.tags.join(", "),
+};
 ---
 
-<Layout title={`${data.title} — Huanworks`} description={data.summary}>
+<Layout title={`${data.title} — Huanworks`} description={data.summary} type="article" schema={articleJsonLd}>
   <article>
     <a
       href="/cases"
@@ -65,6 +79,9 @@ const sourceDateStr = data.sourceDate
               原文链接 ↗
             </a>
           )}
+          {!data.sourceUrl && (
+            <span class="text-[var(--color-fg-dim)]">原文链接：未收录，当前按作者公开自述整理</span>
+          )}
         </div>
       </div>
 
@@ -81,6 +98,10 @@ const sourceDateStr = data.sourceDate
 
     <div class="prose-zh max-w-none">
       <Content />
+    </div>
+
+    <div class="mt-14">
+      <ContactCta compact />
     </div>
   </article>
 </Layout>

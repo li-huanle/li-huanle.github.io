@@ -15,6 +15,14 @@ metrics:
   - label: 数据处理
     value: 本地优先
 date: 2026-05-04
+deliverables:
+  - v1.1.1 Apple Silicon DMG
+  - 跨帧去重、语音消息检测与窗口自动贴合
+observed:
+  - 手测已覆盖连续短句、重复帧和语音消息等典型问题
+unverified:
+  - 尚未建立固定回归集，准确率和版本差异未完成量化验收
+evidence: 当前证据为本机手测与可安装版本，不等同于规模化稳定性验证。
 order: 4
 ---
 

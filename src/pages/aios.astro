@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ContactCta from "../components/ContactCta.astro";
 
 const workflow = [
   { layer: "Capture", desc: "保存原始输入与来源", rule: "原文和摘要分开" },
@@ -127,4 +128,8 @@ const stack = [
       ))}
     </div>
   </section>
+
+  <div class="mt-14">
+    <ContactCta compact />
+  </div>
 </Layout>
