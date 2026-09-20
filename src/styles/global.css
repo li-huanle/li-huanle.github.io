@@ -54,9 +54,13 @@ body {
   color: var(--color-bg);
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+/* 放进 base 层，否则未分层规则会压过 Tailwind 的 text-* 工具类，
+   导致橙底按钮上的 text-black 失效（对比度掉到 2.21） */
+@layer base {
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 }
 
 .mobile-menu-summary::-webkit-details-marker {
