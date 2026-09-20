@@ -16,7 +16,7 @@ const cases = (await getCollection("cases")).sort(
 const featuredProjects = projects.slice(0, 4);
 const featuredMethods = methods.slice(0, 4);
 const featuredCases = cases.slice(0, 3);
-const contactHref = `mailto:me@huanworks.com?subject=${encodeURIComponent("Huanworks 项目沟通")}`;
+const contactHref = "#project-contact";
 ---
 
 <Layout>
@@ -38,7 +38,7 @@ const contactHref = `mailto:me@huanworks.com?subject=${encodeURIComponent("Huanw
         href={contactHref}
         class="min-h-12 px-6 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
       >
-        发我一个真实问题 →
+        发送项目问题 →
       </a>
       <a
         href="/projects"

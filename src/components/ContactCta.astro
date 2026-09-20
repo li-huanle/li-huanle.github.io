@@ -4,14 +4,22 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
-const subject = encodeURIComponent("Huanworks 项目沟通");
-const body = encodeURIComponent(
+const fallbackSubject = encodeURIComponent("Huanworks 项目沟通");
+const fallbackBody = encodeURIComponent(
   "你好，我想聊一个项目。\n\n业务目标：\n投放平台：\n当前卡点：\n希望解决的问题：\n",
 );
-const mailto = `mailto:me@huanworks.com?subject=${subject}&body=${body}`;
+const fallbackMailto = `mailto:me@huanworks.com?subject=${fallbackSubject}&body=${fallbackBody}`;
+const inputClass =
+  "mt-2 min-h-11 w-full rounded border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 text-[var(--color-fg)] outline-none transition-colors placeholder:text-[var(--color-fg-dim)] focus:border-[var(--color-accent)]";
 ---
 
-<section class:list={["bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded", compact ? "p-5" : "p-6 md:p-8"]}>
+<section
+  id="project-contact"
+  class:list={[
+    "project-contact bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded",
+    compact ? "p-5" : "p-6 md:p-8",
+  ]}
+>
   <p class="text-xs font-mono text-[var(--color-accent)] tracking-widest mb-3">
     START WITH A REAL PROBLEM
   </p>
@@ -22,11 +30,150 @@ const mailto = `mailto:me@huanworks.com?subject=${subject}&body=${body}`;
     把业务目标、投放平台和当前卡点发给我。我会先判断问题更适合通过账户诊断、数据复盘还是 AI 工作流解决，再决定下一步怎么聊。
   </p>
   <div class="mt-6 flex flex-wrap gap-3">
-    <a href={mailto} class="min-h-11 px-5 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors">
+    <button
+      type="button"
+      class="project-form-toggle min-h-11 px-5 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+      aria-expanded="false"
+    >
       发送项目问题 →
-    </a>
-    <a href="/projects" class="min-h-11 px-5 inline-flex items-center border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+    </button>
+    <a
+      href="/projects"
+      class="min-h-11 px-5 inline-flex items-center border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors"
+    >
       查看已交付项目
     </a>
   </div>
+
+  <form class="project-email-form mt-8 border-t border-[var(--color-border)] pt-7" hidden>
+    <div class="mb-6">
+      <p class="text-lg font-semibold">先补充项目背景</p>
+      <p class="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
+        提交后会打开你的邮件客户端，并自动生成一封发给 me@huanworks.com 的邮件。本站不会存储这些内容。
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2">
+      <label class="text-sm">
+        怎么称呼你 <span class="text-[var(--color-accent)]">*</span>
+        <input class={inputClass} name="name" autocomplete="name" required placeholder="例如：李先生" />
+      </label>
+      <label class="text-sm">
+        回复邮箱 <span class="text-[var(--color-accent)]">*</span>
+        <input class={inputClass} type="email" name="email" autocomplete="email" required placeholder="name@company.com" />
+      </label>
+      <label class="text-sm">
+        公司 / 品牌
+        <input class={inputClass} name="company" autocomplete="organization" placeholder="选填" />
+      </label>
+      <label class="text-sm">
+        项目类型
+        <select class={inputClass} name="projectType">
+          <option>投放账户诊断</option>
+          <option>数据复盘与增长策略</option>
+          <option>AI 工作流定制</option>
+          <option>知识库 / AIOS 咨询</option>
+          <option>其他合作</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="mt-5 grid gap-5">
+      <label class="text-sm">
+        业务目标 <span class="text-[var(--color-accent)]">*</span>
+        <textarea class={inputClass} name="goal" rows="3" required placeholder="例如：降低新增 A3 成本，并找到下一阶段可放大的内容方向"></textarea>
+      </label>
+      <label class="text-sm">
+        投放平台 / 当前卡点 <span class="text-[var(--color-accent)]">*</span>
+        <textarea class={inputClass} name="challenge" rows="4" required placeholder="请写明平台、当前数据表现、已经尝试过的动作，以及最希望解决的问题"></textarea>
+      </label>
+      <label class="text-sm">
+        时间安排
+        <input class={inputClass} name="timeline" placeholder="例如：希望两周内完成首轮诊断；选填" />
+      </label>
+    </div>
+
+    <div class="mt-6 flex flex-wrap items-center gap-3">
+      <button
+        type="submit"
+        class="min-h-11 px-5 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+      >
+        生成邮件并打开客户端 →
+      </button>
+      <button
+        type="button"
+        class="project-form-cancel min-h-11 px-4 text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-fg)]"
+      >
+        收起表单
+      </button>
+    </div>
+  </form>
+
+  <noscript>
+    <p class="mt-5 text-sm text-[var(--color-fg-muted)]">
+      当前浏览器未启用 JavaScript，可直接
+      <a class="underline text-[var(--color-accent)]" href={fallbackMailto}>打开邮件模板</a>。
+    </p>
+  </noscript>
 </section>
+
+<script>
+  const formatLine = (label: string, value: FormDataEntryValue | null) =>
+    `${label}：${String(value ?? "").trim() || "未填写"}`;
+
+  document.querySelectorAll<HTMLElement>(".project-contact").forEach((section) => {
+    const toggle = section.querySelector<HTMLButtonElement>(".project-form-toggle");
+    const form = section.querySelector<HTMLFormElement>(".project-email-form");
+    const cancel = section.querySelector<HTMLButtonElement>(".project-form-cancel");
+    if (!toggle || !form || !cancel) return;
+
+    const setOpen = (open: boolean) => {
+      form.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.textContent = open ? "收起项目表单 ↑" : "发送项目问题 →";
+      if (open) {
+        form.querySelector<HTMLInputElement>("input")?.focus({ preventScroll: true });
+        form.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      } else {
+        toggle.focus({ preventScroll: true });
+      }
+    };
+
+    toggle.addEventListener("click", () => setOpen(form.hidden));
+    cancel.addEventListener("click", () => setOpen(false));
+    document.querySelectorAll<HTMLAnchorElement>('a[href="#project-contact"]').forEach((link) => {
+      link.addEventListener("click", () => setOpen(true));
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const projectType = String(data.get("projectType") ?? "项目沟通").trim();
+      const company = String(data.get("company") ?? "").trim();
+      const name = String(data.get("name") ?? "").trim();
+      const subject = `[Huanworks 项目沟通] ${projectType} — ${company || name}`;
+      const body = [
+        "你好，我想沟通一个项目。",
+        "",
+        formatLine("称呼", data.get("name")),
+        formatLine("回复邮箱", data.get("email")),
+        formatLine("公司 / 品牌", data.get("company")),
+        formatLine("项目类型", data.get("projectType")),
+        "",
+        "【业务目标】",
+        String(data.get("goal") ?? "").trim(),
+        "",
+        "【投放平台 / 当前卡点】",
+        String(data.get("challenge") ?? "").trim(),
+        "",
+        formatLine("时间安排", data.get("timeline")),
+        "",
+        "来源：Huanworks 网站项目表单",
+      ].join("\n");
+
+      window.location.href = `mailto:me@huanworks.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  });
+</script>
