@@ -32,6 +32,10 @@ const methods = defineCollection({
     tags: z.array(z.string()).default([]),
     date: z.coerce.date(),
     updated: z.coerce.date().optional(),
+    sourceType: z.enum(["平台资料整理", "个人实践", "外部案例"]).optional(),
+    sourceName: z.string().optional(),
+    sourceDate: z.coerce.date().optional(),
+    verificationNote: z.string().optional(),
     order: z.number().default(100),
   }),
 });

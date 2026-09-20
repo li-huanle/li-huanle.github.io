@@ -49,6 +49,26 @@ const articleJsonLd = {
         {data.summary}
       </p>
       {
+        data.sourceType && (
+          <aside class="mt-6 rounded border border-[var(--color-border)] bg-[var(--color-bg-card)] p-4 text-sm leading-relaxed">
+            <p class="font-medium text-[var(--color-fg)]">
+              来源类型：{data.sourceType}
+            </p>
+            {data.sourceName && (
+              <p class="mt-1 text-[var(--color-fg-muted)]">
+                资料来源：{data.sourceName}
+                {data.sourceDate && `（知识库整理于 ${data.sourceDate.toISOString().slice(0, 10)}）`}
+              </p>
+            )}
+            {data.verificationNote && (
+              <p class="mt-2 text-[var(--color-fg-muted)]">
+                使用边界：{data.verificationNote}
+              </p>
+            )}
+          </aside>
+        )
+      }
+      {
         data.tags.length > 0 && (
           <div class="flex flex-wrap gap-2 mt-6">
             {data.tags.map((t) => (

@@ -5,8 +5,11 @@ import { getCollection } from "astro:content";
 const methods = (await getCollection("methods")).sort(
   (a, b) => a.data.order - b.data.order,
 );
+const platformMethods = methods.filter(
+  (method) => method.data.sourceType === "平台资料整理",
+);
 
-const grouped = methods.reduce(
+const grouped = methods.filter((method) => method.data.sourceType !== "平台资料整理").reduce(
   (acc, m) => {
     const k = m.data.domain;
     (acc[k] ??= []).push(m);
@@ -29,9 +32,50 @@ const domains = Object.keys(grouped);
     <h1 class="text-4xl font-bold mb-4">方法论库</h1>
     <p class="text-[var(--color-fg-muted)] max-w-2xl">
       每张卡片按「问题 / 前提 / 操作 / 判断 / 错误 / 边界」展开，覆盖广告增长、数据分析、
-      AI 工作流、RAG、知识管理与产品验证。不是观点合集，而是可执行、可验收的 SOP。
+      AI 工作流、RAG、知识管理与产品验证。平台资料、个人实践和外部案例分开标注，
+      时效规则以上线前后台复核为准。
     </p>
   </section>
+
+  {
+    platformMethods.length > 0 && (
+      <section class="mb-12">
+        <div class="mb-4">
+          <h2 class="text-sm font-mono text-[var(--color-accent)] tracking-widest">
+            平台资料整理
+          </h2>
+          <p class="mt-2 text-sm text-[var(--color-fg-muted)]">
+            从知识库收录的平台手册与产品资料中提炼；保留决策框架，并明确资料日期与复核边界。
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          {platformMethods.map((m) => (
+            <a
+              href={`/methods/${m.id}`}
+              class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+            >
+              <h3 class="font-semibold mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
+                {m.data.title}
+              </h3>
+              <p class="mb-2 text-xs font-mono text-[var(--color-accent)]">
+                {m.data.sourceName}
+              </p>
+              <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-3">
+                {m.data.summary}
+              </p>
+              <div class="flex flex-wrap gap-1.5">
+                {m.data.tags.slice(0, 4).map((t) => (
+                  <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-fg-dim)] font-mono rounded">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   {
     domains.map((domain) => (
@@ -48,6 +92,13 @@ const domains = Object.keys(grouped);
               <h3 class="font-semibold mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
                 {m.data.title}
               </h3>
+              {
+                m.data.sourceType && (
+                  <p class="mb-2 text-xs font-mono text-[var(--color-accent)]">
+                    {m.data.sourceType}
+                  </p>
+                )
+              }
               <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-3">
                 {m.data.summary}
               </p>
