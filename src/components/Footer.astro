@@ -2,28 +2,34 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-[var(--color-border)] mt-32">
-  <div class="max-w-5xl mx-auto px-6 py-10 text-sm text-[var(--color-fg-muted)]">
-    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-      <div>© {year} Huanworks · 广告增长 × 数据分析 × AI 工作流</div>
-      <div class="flex flex-wrap items-center gap-5">
-        <a href="mailto:me@huanworks.com" class="hover:text-[var(--color-accent)] transition-colors">
-          me@huanworks.com
-        </a>
-        <a href="https://github.com/li-huanle" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
-          GitHub
-        </a>
+<footer class="site-footer mt-28">
+  <div class="max-w-6xl mx-auto px-5 md:px-8 py-12 md:py-16">
+    <div class="footer-grid">
+      <div class="footer-statement">
+        <p class="eyebrow">HUANWORKS / GROWTH · DATA · AI</p>
+        <h2>让增长判断留下证据，<br/>让有效动作成为系统。</h2>
+      </div>
+      <div class="footer-links">
+        <div>
+          <p>探索</p>
+          <a href="/projects">项目案例</a>
+          <a href="/methods">方法论库</a>
+          <a href="/aios">AIOS</a>
+        </div>
+        <div>
+          <p>联系</p>
+          <a href="mailto:me@huanworks.com">复制邮箱</a>
+          <a href="https://github.com/li-huanle" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+        </div>
       </div>
     </div>
-
-    <div class="mt-5 pt-5 border-t border-[var(--color-border)] flex flex-wrap items-center gap-x-5 gap-y-2">
-      <span class="font-mono text-xs tracking-widest">友链</span>
-      <a href="https://valuristories.com/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
-        Valuri Stories
-      </a>
-      <a href="https://video10x.app/" target="_blank" rel="noopener noreferrer" class="hover:text-[var(--color-accent)] transition-colors">
-        Video10x
-      </a>
+    <div class="footer-bottom">
+      <div>© {year} Huanworks · 广告增长 × 数据分析 × AI 工作流</div>
+      <div class="footer-friends">
+        <span>FRIENDS</span>
+        <a href="https://valuristories.com/" target="_blank" rel="noopener noreferrer">Valuri Stories ↗</a>
+        <a href="https://video10x.app/" target="_blank" rel="noopener noreferrer">Video10x ↗</a>
+      </div>
     </div>
   </div>
 

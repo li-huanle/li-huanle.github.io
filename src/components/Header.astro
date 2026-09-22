@@ -2,22 +2,31 @@
 const nav = [
   { href: "/", label: "首页" },
   { href: "/projects", label: "项目" },
-  { href: "/cases", label: "案例" },
   { href: "/methods", label: "方法论" },
-  { href: "/geo", label: "GEO" },
-  { href: "/aios", label: "AIOS" },
   { href: "/blog", label: "笔记" },
   { href: "/about", label: "关于" },
 ];
+const researchNav = [
+  { href: "/cases", label: "案例收藏", note: "外部案例与方法拆解" },
+  { href: "/geo", label: "GEO 指南", note: "从诊断到效果验收" },
+  { href: "/aios", label: "AIOS", note: "个人 AI 操作系统" },
+];
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+const researchActive = researchNav.some(
+  (item) => pathname === item.href || pathname.startsWith(item.href + "/"),
+);
 ---
 
-<header class="border-b border-[var(--color-border)] sticky top-0 backdrop-blur-md bg-black/80 z-50">
-  <div class="max-w-5xl mx-auto px-4 md:px-6 h-16 flex items-center gap-4 justify-between">
-    <a href="/" class="font-semibold tracking-tight text-lg">
-      <span class="text-[var(--color-accent)]">/</span> Huanworks
+<header class="site-header sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 md:px-8 h-[4.5rem] flex items-center gap-5 justify-between">
+    <a href="/" class="brand-lockup" aria-label="Huanworks 首页">
+      <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>
+        <strong>Huanworks</strong>
+        <small>Growth Systems</small>
+      </span>
     </a>
-    <nav class="hidden md:flex items-center gap-6 text-sm whitespace-nowrap" aria-label="主导航">
+    <nav class="hidden lg:flex items-center gap-1 text-sm whitespace-nowrap" aria-label="主导航">
       {
         nav.map((item) => {
           const active =
@@ -27,22 +36,37 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
           return (
             <a
               href={item.href}
-              class={`transition-colors hover:text-[var(--color-accent)] ${active ? "text-[var(--color-accent)]" : "text-[var(--color-fg-muted)]"}`}
+              class:list={["nav-link", { active }]}
             >
               {item.label}
             </a>
           );
         })
       }
+      <details class="nav-popover">
+        <summary class:list={["nav-link", { active: researchActive }]}>研究 <span aria-hidden="true">⌄</span></summary>
+        <div class="nav-popover-panel">
+          {researchNav.map((item) => (
+            <a href={item.href}>
+              <strong>{item.label}</strong>
+              <small>{item.note}</small>
+            </a>
+          ))}
+        </div>
+      </details>
     </nav>
 
-    <details class="relative md:hidden group">
-      <summary class="mobile-menu-summary list-none min-h-11 min-w-11 px-3 flex items-center justify-center rounded border border-[var(--color-border)] text-sm text-[var(--color-fg-muted)] cursor-pointer hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]">
-        菜单
+    <a href="/#project-contact" class="header-cta hidden lg:inline-flex">
+      <span class="signal-dot"></span> 沟通项目
+    </a>
+
+    <details class="relative lg:hidden group mobile-menu">
+      <summary class="mobile-menu-summary" aria-label="打开导航菜单">
+        <span></span><span></span>
       </summary>
-      <nav class="absolute right-0 top-13 w-44 p-2 rounded border border-[var(--color-border)] bg-[var(--color-bg-elev)] shadow-xl" aria-label="移动端导航">
+      <nav class="mobile-menu-panel" aria-label="移动端导航">
         {
-          nav.map((item) => {
+          [...nav, ...researchNav].map((item) => {
             const active =
               item.href === "/"
                 ? pathname === "/"
@@ -50,7 +74,7 @@ const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
             return (
               <a
                 href={item.href}
-                class={`min-h-11 px-3 flex items-center rounded transition-colors hover:bg-[var(--color-bg-card)] hover:text-[var(--color-accent)] ${active ? "text-[var(--color-accent)]" : "text-[var(--color-fg-muted)]"}`}
+                class:list={["mobile-nav-link", { active }]}
               >
                 {item.label}
               </a>

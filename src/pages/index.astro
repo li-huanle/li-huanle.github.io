@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ContactCta from "../components/ContactCta.astro";
+import GrowthLoop from "../components/GrowthLoop.astro";
 import { getCollection } from "astro:content";
 
 const projects = (await getCollection("projects")).sort(
@@ -21,45 +22,42 @@ const contactHref = "#project-contact";
 
 <Layout>
   <!-- Hero -->
-  <section class="py-16 md:py-24 border-b border-[var(--color-border)]">
-    <p class="text-sm text-[var(--color-accent)] font-mono mb-4 tracking-widest">
-      增长投放操盘手 · 8 年信息流经验 · 小红书聚光 / 巨量引擎
-    </p>
-    <h1 class="text-4xl md:text-6xl font-bold leading-tight tracking-tight mb-6">
-      把投放数据变成增长动作<br/>
-      <span class="text-[var(--color-accent)]">再把有效动作沉淀成 AI 工作流</span>
-    </h1>
-    <p class="text-lg text-[var(--color-fg-muted)] max-w-3xl leading-relaxed">
-      我帮助品牌方、代理团队和增长负责人诊断投放问题，统一数据口径，优化内容、人群、搜索与承接链路，
-      并把高频交付固化成 SOP、知识库和 Agent。
-    </p>
-    <div class="mt-10 flex flex-wrap gap-4">
-      <a
-        href={contactHref}
-        class="min-h-12 px-6 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
-      >
-        发送项目问题 →
-      </a>
-      <a
-        href="/projects"
-        class="min-h-12 px-6 inline-flex items-center border border-[var(--color-border)] hover:border-[var(--color-accent)] transition-colors rounded"
-      >
-        查看已交付项目
-      </a>
+  <section class="home-hero">
+    <div class="hero-copy">
+      <div class="hero-status">
+        <span class="signal-dot"></span>
+        <span>增长投放操盘手</span>
+        <i></i>
+        <span>8 年信息流经验</span>
+      </div>
+      <h1>
+        把投放数据<br/>变成<span>增长动作</span>
+      </h1>
+      <p class="hero-thesis">再把有效动作，沉淀成可复用的 AI 工作流。</p>
+      <p class="hero-description">
+        面向品牌方、代理团队和增长负责人，诊断投放问题，统一数据口径，优化内容、人群、搜索与承接链路。
+      </p>
+      <div class="hero-actions">
+        <a href={contactHref} class="button-primary">发送项目问题 <span>↗</span></a>
+        <a href="/projects" class="button-secondary">查看已交付项目 <span>→</span></a>
+      </div>
     </div>
-    <div class="mt-10 grid sm:grid-cols-3 gap-3 max-w-3xl text-sm">
-      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">8 年信息流投放经验</div>
-      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">巨量引擎 × 小红书聚光</div>
-      <div class="p-3 border-l-2 border-[var(--color-accent)] bg-[var(--color-bg-card)]">标注角色、状态与证据边界</div>
+    <GrowthLoop />
+    <div class="hero-proof" aria-label="经验与专业领域">
+      <div><span>01</span><strong>8 年</strong><small>信息流投放经验</small></div>
+      <div><span>02</span><strong>双平台</strong><small>巨量引擎 × 小红书聚光</small></div>
+      <div><span>03</span><strong>可验证</strong><small>角色、状态与证据边界</small></div>
     </div>
   </section>
 
   <!-- 三大方向 -->
-  <section class="py-16 border-b border-[var(--color-border)]">
-    <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-8">
-      我在做什么
-    </h2>
-    <div class="grid md:grid-cols-3 gap-6">
+  <section class="home-section">
+    <div class="section-heading">
+      <p>01 / CAPABILITIES</p>
+      <h2>我在做什么</h2>
+      <span>把复杂的增长问题，拆成能执行、能回读、能迭代的动作。</span>
+    </div>
+    <div class="grid md:grid-cols-3 gap-4">
       {
         [
           {
@@ -83,7 +81,7 @@ const contactHref = "#project-contact";
         ].map((card) => (
           <a
             href={card.href ?? null}
-            class={`block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded transition-colors ${card.href ? "hover:border-[var(--color-accent)]" : ""}`}
+            class="capability-card"
           >
             <p class="text-xs font-mono text-[var(--color-accent)] mb-2">
               {card.sub}
@@ -93,8 +91,8 @@ const contactHref = "#project-contact";
               {card.body}
             </p>
             {card.href && (
-              <p class="text-xs text-[var(--color-accent)] font-mono mt-3">
-                查看详情 →
+            <p class="card-link">
+                查看能力详情 <span>↗</span>
               </p>
             )}
           </a>
@@ -104,10 +102,10 @@ const contactHref = "#project-contact";
   </section>
 
   <!-- GEO 专题 -->
-  <section class="py-10 border-b border-[var(--color-border)]">
+  <section class="feature-band">
     <a
       href="/geo"
-      class="block md:flex items-center justify-between gap-8 p-6 md:p-8 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+      class="feature-band-link group"
     >
       <div>
         <p class="text-xs font-mono text-[var(--color-accent)] mb-2">NEW · GEO FIELD GUIDE</p>
@@ -123,13 +121,11 @@ const contactHref = "#project-contact";
   </section>
 
   <!-- 精选项目 -->
-  <section class="py-16 border-b border-[var(--color-border)]">
-    <div class="flex items-end justify-between mb-8">
+  <section class="home-section">
+    <div class="section-heading section-heading-row">
       <div>
-        <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
-          精选项目
-        </h2>
-        <p class="text-2xl font-semibold">问题 → 方法 → 结果</p>
+        <p>02 / SELECTED WORK</p>
+        <h2>问题 → 方法 → 结果</h2>
       </div>
       <a
         href="/projects"
@@ -143,7 +139,7 @@ const contactHref = "#project-contact";
         featuredProjects.map((p) => (
           <a
             href={`/projects/${p.id}`}
-            class="block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+            class="project-card group"
           >
             <div class="flex items-center gap-2 mb-3">
               <span class="text-xs px-2 py-0.5 bg-[var(--color-bg-elev)] text-[var(--color-accent)] font-mono rounded">
@@ -174,13 +170,11 @@ const contactHref = "#project-contact";
 
   <!-- 案例收藏 -->
   {featuredCases.length > 0 && (
-    <section class="py-16 border-b border-[var(--color-border)]">
-      <div class="flex items-end justify-between mb-8">
+    <section class="home-section">
+      <div class="section-heading section-heading-row">
         <div>
-          <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
-            案例收藏
-          </h2>
-          <p class="text-2xl font-semibold">从同行案例里抽出的方法论</p>
+          <p>03 / CASE NOTES</p>
+          <h2>从同行案例里抽出的方法论</h2>
         </div>
         <a
           href="/cases"
@@ -193,7 +187,7 @@ const contactHref = "#project-contact";
         {featuredCases.map((c) => (
           <a
             href={`/cases/${c.id}`}
-            class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+            class="case-card group"
           >
             <p class="text-xs font-mono text-[var(--color-fg-dim)] mb-2">
               {c.data.source}
@@ -214,13 +208,11 @@ const contactHref = "#project-contact";
   )}
 
   <!-- 方法论 -->
-  <section class="py-16">
-    <div class="flex items-end justify-between mb-8">
+  <section class="home-section home-section-last">
+    <div class="section-heading section-heading-row">
       <div>
-        <h2 class="text-sm font-mono text-[var(--color-fg-dim)] tracking-widest mb-2">
-          方法论库
-        </h2>
-        <p class="text-2xl font-semibold">能跑通的 SOP，不是观点</p>
+        <p>04 / PLAYBOOKS</p>
+        <h2>能跑通的 SOP，不是观点</h2>
       </div>
       <a
         href="/methods"
@@ -234,7 +226,7 @@ const contactHref = "#project-contact";
         featuredMethods.map((m) => (
           <a
             href={`/methods/${m.id}`}
-            class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
+            class="method-card group"
           >
             <p class="text-xs font-mono text-[var(--color-accent)] mb-2">
               {m.data.domain}

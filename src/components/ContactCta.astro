@@ -16,36 +16,37 @@ const inputClass =
 <section
   id="project-contact"
   class:list={[
-    "project-contact bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded",
+    "project-contact contact-panel",
     compact ? "p-5" : "p-6 md:p-8",
   ]}
 >
-  <p class="text-xs font-mono text-[var(--color-accent)] tracking-widest mb-3">
-    START WITH A REAL PROBLEM
-  </p>
-  <h2 class:list={["font-semibold leading-snug", compact ? "text-xl" : "text-2xl"]}>
-    有一个正在消耗预算，但团队还说不清问题出在哪里的项目？
-  </h2>
-  <p class="mt-3 text-[var(--color-fg-muted)] leading-relaxed max-w-3xl">
-    把业务目标、投放平台和当前卡点发给我。我会先判断问题更适合通过账户诊断、数据复盘还是 AI 工作流解决，再决定下一步怎么聊。
-  </p>
-  <div class="mt-6 flex flex-wrap gap-3">
+  <div class="contact-panel-copy">
+    <div class="contact-signal" aria-hidden="true"><span></span><span></span><span></span></div>
+    <p class="eyebrow">START WITH A REAL PROBLEM</p>
+    <h2 class:list={["font-semibold leading-snug", compact ? "text-xl md:text-2xl" : "text-2xl md:text-3xl"]}>
+      有一个正在消耗预算，<br class="hidden md:block"/>但团队还说不清问题出在哪里的项目？
+    </h2>
+    <p>
+      把目标、平台和当前卡点发给我。我会先判断更适合从账户诊断、数据复盘还是 AI 工作流切入。
+    </p>
+  </div>
+  <div class="contact-panel-actions">
     <button
       type="button"
-      class="project-form-toggle min-h-11 px-5 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+      class="project-form-toggle button-primary"
       aria-expanded="false"
     >
       发送项目问题 →
     </button>
     <a
       href="/projects"
-      class="min-h-11 px-5 inline-flex items-center border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors"
+      class="button-secondary"
     >
       查看已交付项目
     </a>
   </div>
 
-  <form class="project-email-form mt-8 border-t border-[var(--color-border)] pt-7" hidden>
+  <form class="project-email-form" hidden>
     <div class="mb-6">
       <p class="text-lg font-semibold">先补充项目背景</p>
       <p class="mt-2 text-sm leading-relaxed text-[var(--color-fg-muted)]">
@@ -96,7 +97,7 @@ const inputClass =
     <div class="mt-6 flex flex-wrap items-center gap-3">
       <button
         type="submit"
-        class="min-h-11 px-5 inline-flex items-center bg-[var(--color-accent)] text-black font-medium rounded hover:bg-[var(--color-accent-soft)] transition-colors"
+        class="button-primary"
       >
         生成邮件并打开客户端 →
       </button>
