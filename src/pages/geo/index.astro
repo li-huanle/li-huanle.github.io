@@ -45,7 +45,7 @@ const chapters = (await getCollection("geo")).sort(
     <div class="space-y-4">
       {chapters.map((item) => (
         <a
-          href={`/geo/${item.id}`}
+          href={`/geo/${item.id}/`}
           class="grid md:grid-cols-[80px_1fr_auto] gap-3 md:gap-6 items-start p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
         >
           <span class="text-2xl font-mono text-[var(--color-accent)]">

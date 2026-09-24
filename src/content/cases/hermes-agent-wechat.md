@@ -14,7 +14,7 @@ order: 1
 
 它把一个我之前模糊的判断变成了清晰的可执行路径：**AI 产品化的瓶颈不在能力，而在用户每天愿不愿意打开**。这条思路可以平移到很多客户场景（比如客户想做品牌 AI 助理但卡在用户习惯）。
 
-我把它抽成了一篇方法论：[AI 产品化的"微信入口模式"](/methods/wechat-ai-product-entry-mode)。
+我把它抽成了一篇方法论：[AI 产品化的"微信入口模式"](/methods/wechat-ai-product-entry-mode/)。
 
 ## 案例原文要点
 
@@ -61,5 +61,5 @@ order: 1
 
 ## 关联沉淀
 
-- 方法论：[AI 产品化的"微信入口模式"](/methods/wechat-ai-product-entry-mode)
-- 配套工作流：[元元提示法笔记](/methods/meta-meta-prompting)
+- 方法论：[AI 产品化的"微信入口模式"](/methods/wechat-ai-product-entry-mode/)
+- 配套工作流：[元元提示法笔记](/methods/meta-meta-prompting/)

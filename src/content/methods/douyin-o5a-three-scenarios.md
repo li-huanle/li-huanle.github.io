@@ -96,7 +96,6 @@ GMV 目标
 
 ## 和站内方法配合使用
 
-- 判断是否该做种草：参考 [A3 种草决策框架](/methods/a3-seeding-decision-framework)。
-- 做投后复盘：参考 [数据 → 洞察 → 行动 → 结果](/methods/growth-data-action-loop)。
-- 做新品搜索承接：参考 [小红书新品 KFS 框架](/methods/kfs-new-product-launch-framework)。
-
+- 判断是否该做种草：参考 [A3 种草决策框架](/methods/a3-seeding-decision-framework/)。
+- 做投后复盘：参考 [数据 → 洞察 → 行动 → 结果](/methods/growth-data-action-loop/)。
+- 做新品搜索承接：参考 [小红书新品 KFS 框架](/methods/kfs-new-product-launch-framework/)。

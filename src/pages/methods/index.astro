@@ -51,7 +51,7 @@ const domains = Object.keys(grouped);
         <div class="grid md:grid-cols-2 gap-4">
           {platformMethods.map((m) => (
             <a
-              href={`/methods/${m.id}`}
+              href={`/methods/${m.id}/`}
               class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
             >
               <h3 class="font-semibold mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">
@@ -86,7 +86,7 @@ const domains = Object.keys(grouped);
         <div class="grid md:grid-cols-2 gap-4">
           {grouped[domain].map((m) => (
             <a
-              href={`/methods/${m.id}`}
+              href={`/methods/${m.id}/`}
               class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
             >
               <h3 class="font-semibold mb-2 leading-snug group-hover:text-[var(--color-accent)] transition-colors">

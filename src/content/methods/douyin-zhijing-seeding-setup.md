@@ -82,5 +82,4 @@ order: 11
 - 只看项目总数，不拆素材与人群组合。
 - 没有回后台确认，就把历史资料中的字段写进客户方案。
 
-进一步判断 A3 是否值得投入，可配合 [A3 种草决策框架](/methods/a3-seeding-decision-framework)；账户异常排查可配合 [投放账户诊断清单](/methods/account-diagnosis-checklist)。
-
+进一步判断 A3 是否值得投入，可配合 [A3 种草决策框架](/methods/a3-seeding-decision-framework/)；账户异常排查可配合 [投放账户诊断清单](/methods/account-diagnosis-checklist/)。

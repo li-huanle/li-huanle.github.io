@@ -36,7 +36,7 @@ const jsonLd = {
 
 <Layout title={`${data.title} — Huanworks`} description={data.summary} type="article" schema={jsonLd}>
   <article>
-    <a href="/geo" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] mb-8 inline-block transition-colors">
+    <a href="/geo/" class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] mb-8 inline-block transition-colors">
       ← 返回 GEO 指南
     </a>
     <header class="border-b border-[var(--color-border)] pb-8 mb-8">
@@ -54,13 +54,13 @@ const jsonLd = {
     <div class="prose-zh max-w-none"><Content /></div>
     <nav class="grid sm:grid-cols-2 gap-4 mt-14 pt-8 border-t border-[var(--color-border)]">
       {previous ? (
-        <a href={`/geo/${previous.id}`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
+        <a href={`/geo/${previous.id}/`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors">
           <span class="text-xs text-[var(--color-fg-dim)]">上一篇</span>
           <p class="mt-1 text-sm">← {previous.data.title}</p>
         </a>
       ) : <span />}
       {next && (
-        <a href={`/geo/${next.id}`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors text-right">
+        <a href={`/geo/${next.id}/`} class="p-4 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors text-right">
           <span class="text-xs text-[var(--color-fg-dim)]">下一篇</span>
           <p class="mt-1 text-sm">{next.data.title} →</p>
         </a>

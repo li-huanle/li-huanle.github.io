@@ -1,19 +1,22 @@
 ---
 const nav = [
   { href: "/", label: "首页" },
-  { href: "/projects", label: "项目" },
-  { href: "/methods", label: "方法论" },
-  { href: "/blog", label: "笔记" },
-  { href: "/about", label: "关于" },
+  { href: "/projects/", label: "项目" },
+  { href: "/methods/", label: "方法论" },
+  { href: "/blog/", label: "笔记" },
+  { href: "/about/", label: "关于" },
 ];
 const researchNav = [
-  { href: "/cases", label: "案例收藏", note: "外部案例与方法拆解" },
-  { href: "/geo", label: "GEO 指南", note: "从诊断到效果验收" },
-  { href: "/aios", label: "AIOS", note: "个人 AI 操作系统" },
+  { href: "/cases/", label: "案例收藏", note: "外部案例与方法拆解" },
+  { href: "/geo/", label: "GEO 指南", note: "从诊断到效果验收" },
+  { href: "/aios/", label: "AIOS", note: "个人 AI 操作系统" },
 ];
 const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
 const researchActive = researchNav.some(
-  (item) => pathname === item.href || pathname.startsWith(item.href + "/"),
+  (item) => {
+    const itemPath = item.href.replace(/\/$/, "") || "/";
+    return pathname === itemPath || pathname.startsWith(itemPath + "/");
+  },
 );
 ---
 
@@ -29,10 +32,11 @@ const researchActive = researchNav.some(
     <nav class="hidden lg:flex items-center gap-1 text-sm whitespace-nowrap" aria-label="主导航">
       {
         nav.map((item) => {
+          const itemPath = item.href.replace(/\/$/, "") || "/";
           const active =
             item.href === "/"
               ? pathname === "/"
-              : pathname === item.href || pathname.startsWith(item.href + "/");
+              : pathname === itemPath || pathname.startsWith(itemPath + "/");
           return (
             <a
               href={item.href}
@@ -67,10 +71,11 @@ const researchActive = researchNav.some(
       <nav class="mobile-menu-panel" aria-label="移动端导航">
         {
           [...nav, ...researchNav].map((item) => {
+            const itemPath = item.href.replace(/\/$/, "") || "/";
             const active =
               item.href === "/"
                 ? pathname === "/"
-                : pathname === item.href || pathname.startsWith(item.href + "/");
+                : pathname === itemPath || pathname.startsWith(itemPath + "/");
             return (
               <a
                 href={item.href}

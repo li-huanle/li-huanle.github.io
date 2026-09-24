@@ -26,7 +26,7 @@ const projects = (await getCollection("projects")).sort(
     {
       projects.map((p) => (
         <a
-          href={`/projects/${p.id}`}
+          href={`/projects/${p.id}/`}
           class="block p-6 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
         >
           <div class="flex items-center gap-2 mb-4">

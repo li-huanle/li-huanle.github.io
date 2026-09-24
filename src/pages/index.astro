@@ -39,7 +39,7 @@ const contactHref = "#project-contact";
       </p>
       <div class="hero-actions">
         <a href={contactHref} class="button-primary">发送项目问题 <span>↗</span></a>
-        <a href="/projects" class="button-secondary">查看已交付项目 <span>→</span></a>
+        <a href="/projects/" class="button-secondary">查看已交付项目 <span>→</span></a>
       </div>
     </div>
     <GrowthLoop />
@@ -64,19 +64,19 @@ const contactHref = "#project-contact";
             title: "投放诊断与增长策略",
             sub: "Account Diagnosis",
             body: "从业务目标和核心 KPI 出发，定位账户、内容、人群、搜索与承接链路中的关键问题，给出可验证的优化动作。",
-            href: "/methods/account-diagnosis-checklist",
+            href: "/methods/account-diagnosis-checklist/",
           },
           {
             title: "数据复盘与经营判断",
             sub: "Data → Insight → Action",
             body: "统一口径、清洗数据、拆解异常，把日报和复盘从“报数字”升级为可追踪、可验证的经营动作。",
-            href: "/methods/growth-data-action-loop",
+            href: "/methods/growth-data-action-loop/",
           },
           {
             title: "AI 工作流与知识库落地",
             sub: "AIOS & Knowledge Workflow",
             body: "把已经跑通的高频任务沉淀为 SOP、知识库、Skill 或 Agent，在保留人工审核的前提下减少重复劳动。",
-            href: "/aios",
+            href: "/aios/",
           },
         ].map((card) => (
           <a
@@ -104,7 +104,7 @@ const contactHref = "#project-contact";
   <!-- GEO 专题 -->
   <section class="feature-band">
     <a
-      href="/geo"
+      href="/geo/"
       class="feature-band-link group"
     >
       <div>
@@ -128,7 +128,7 @@ const contactHref = "#project-contact";
         <h2>问题 → 方法 → 结果</h2>
       </div>
       <a
-        href="/projects"
+        href="/projects/"
         class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
       >
         全部项目 →
@@ -138,7 +138,7 @@ const contactHref = "#project-contact";
       {
         featuredProjects.map((p) => (
           <a
-            href={`/projects/${p.id}`}
+            href={`/projects/${p.id}/`}
             class="project-card group"
           >
             <div class="flex items-center gap-2 mb-3">
@@ -177,7 +177,7 @@ const contactHref = "#project-contact";
           <h2>从同行案例里抽出的方法论</h2>
         </div>
         <a
-          href="/cases"
+          href="/cases/"
           class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
         >
           全部案例 →
@@ -186,7 +186,7 @@ const contactHref = "#project-contact";
       <div class="grid md:grid-cols-3 gap-4">
         {featuredCases.map((c) => (
           <a
-            href={`/cases/${c.id}`}
+            href={`/cases/${c.id}/`}
             class="case-card group"
           >
             <p class="text-xs font-mono text-[var(--color-fg-dim)] mb-2">
@@ -215,7 +215,7 @@ const contactHref = "#project-contact";
         <h2>能跑通的 SOP，不是观点</h2>
       </div>
       <a
-        href="/methods"
+        href="/methods/"
         class="text-sm text-[var(--color-fg-muted)] hover:text-[var(--color-accent)] transition-colors"
       >
         全部方法论 →
@@ -225,7 +225,7 @@ const contactHref = "#project-contact";
       {
         featuredMethods.map((m) => (
           <a
-            href={`/methods/${m.id}`}
+            href={`/methods/${m.id}/`}
             class="method-card group"
           >
             <p class="text-xs font-mono text-[var(--color-accent)] mb-2">

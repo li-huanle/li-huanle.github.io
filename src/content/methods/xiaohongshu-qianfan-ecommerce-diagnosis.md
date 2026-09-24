@@ -92,5 +92,4 @@ order: 13
 - 把托管理解为无需运营，未提供足够素材和转化环境。
 - 搜索买了大量词，但内容与商品没有回答这些搜索需求。
 
-搜索投放可继续阅读 [小红书搜索首屏三要素](/methods/xiaohongshu-search-firstscreen)；新品规划可结合 [小红书新品 KFS 框架](/methods/kfs-new-product-launch-framework)。
-
+搜索投放可继续阅读 [小红书搜索首屏三要素](/methods/xiaohongshu-search-firstscreen/)；新品规划可结合 [小红书新品 KFS 框架](/methods/kfs-new-product-launch-framework/)。

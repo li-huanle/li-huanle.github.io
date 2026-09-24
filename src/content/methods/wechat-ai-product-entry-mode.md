@@ -7,7 +7,7 @@ date: 2026-05-11
 order: 6
 ---
 
-> **方法论来源**：从 [HermesAgent 微信助理案例](/cases/hermes-agent-wechat) 抽出。我自己没有跑过这个产品，但从这个案例里识别出的判断框架可以平移到其他 AI 产品化场景。
+> **方法论来源**：从 [HermesAgent 微信助理案例](/cases/hermes-agent-wechat/) 抽出。我自己没有跑过这个产品，但从这个案例里识别出的判断框架可以平移到其他 AI 产品化场景。
 
 ## 解决什么问题
 

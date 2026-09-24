@@ -29,7 +29,7 @@ const posts = all
         <p>笔记栏目筹备中，第一篇正在写。</p>
         <p class="text-sm mt-2 text-[var(--color-fg-dim)]">
           想先看已沉淀的内容？去
-          <a href="/methods" class="text-[var(--color-accent)] hover:underline">
+          <a href="/methods/" class="text-[var(--color-accent)] hover:underline">
             方法论库
           </a>
           。
@@ -39,7 +39,7 @@ const posts = all
       <div class="space-y-4">
         {posts.map((p) => (
           <a
-            href={`/blog/${p.id}`}
+            href={`/blog/${p.id}/`}
             class="block p-5 bg-[var(--color-bg-card)] border border-[var(--color-border)] rounded hover:border-[var(--color-accent)] transition-colors group"
           >
             <p class="text-xs font-mono text-[var(--color-fg-dim)] mb-2">

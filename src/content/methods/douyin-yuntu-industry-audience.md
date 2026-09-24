@@ -75,5 +75,4 @@ order: 12
 2. 历史画像、规模和案例提升不能直接作为当前项目承诺。
 3. 人群包只是输入，最终要由内容、人群与承接的组合结果验证。
 
-将测试结果写回决策时，可使用 [数据 → 洞察 → 行动 → 结果](/methods/growth-data-action-loop)；若项目以 A3 为核心，应同时使用 [A3 种草决策框架](/methods/a3-seeding-decision-framework)。
-
+将测试结果写回决策时，可使用 [数据 → 洞察 → 行动 → 结果](/methods/growth-data-action-loop/)；若项目以 A3 为核心，应同时使用 [A3 种草决策框架](/methods/a3-seeding-decision-framework/)。

@@ -87,5 +87,4 @@ order: 14
 - 只看跨域行为，不检查小红书搜索和内容承接。
 - 把平台案例表现写成本项目的效果承诺。
 
-建立跨平台复盘口径时，可配合 [增长复盘闭环](/methods/growth-data-action-loop)；处理搜索承接时参考 [小红书搜索首屏三要素](/methods/xiaohongshu-search-firstscreen)。
-
+建立跨平台复盘口径时，可配合 [增长复盘闭环](/methods/growth-data-action-loop/)；处理搜索承接时参考 [小红书搜索首屏三要素](/methods/xiaohongshu-search-firstscreen/)。
