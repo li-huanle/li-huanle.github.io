@@ -30,6 +30,7 @@ const articleJsonLd = {
   author: { "@type": "Person", name: "huanle", url: new URL("/about/", Astro.site).toString() },
   mainEntityOfPage: new URL(Astro.url.pathname, Astro.site).toString(),
   keywords: data.tags.join(", "),
+  citation: data.sources.map((source) => source.url).concat(data.sourceUrl ? [data.sourceUrl] : []),
 };
 ---
 
@@ -69,17 +70,26 @@ const articleJsonLd = {
           {sourceDateStr && (
             <span>时间：<span class="text-[var(--color-fg)]">{sourceDateStr}</span></span>
           )}
-          {data.sourceUrl && (
+          {data.sources.length > 0 ? (
+            <ul class="w-full space-y-1 mt-2">
+              {data.sources.map((source) => (
+                <li>
+                  <a href={source.url} target="_blank" rel="noopener noreferrer" class="text-[var(--color-accent)] hover:underline">
+                    {source.title} · {source.author} ↗
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : data.sourceUrl ? (
             <a
               href={data.sourceUrl}
               target="_blank"
-              rel="noopener"
+              rel="noopener noreferrer"
               class="text-[var(--color-accent)] hover:underline"
             >
               原文链接 ↗
             </a>
-          )}
-          {!data.sourceUrl && (
+          ) : (
             <span class="text-[var(--color-fg-dim)]">原文链接：未收录，当前按作者公开自述整理</span>
           )}
         </div>

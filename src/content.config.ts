@@ -48,6 +48,7 @@ const cases = defineCollection({
     source: z.string(),
     sourceAuthor: z.string().optional(),
     sourceUrl: z.string().url().optional(),
+    sources: z.array(z.object({ title: z.string(), author: z.string(), url: z.string().url() })).default([]),
     sourceDate: z.coerce.date().optional(),
     tags: z.array(z.string()).default([]),
     takeaway: z.string().optional(),
