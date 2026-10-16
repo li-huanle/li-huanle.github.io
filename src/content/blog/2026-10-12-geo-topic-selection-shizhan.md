@@ -32,7 +32,7 @@ huanworks 的产品方向很明确：**增长投放操盘手**（投放诊断服
 | GEO 见效周期与效果验证 | FAQ/信任 |
 | GEO 工具推荐 | 工具 |
 
-其中观点、点点、元宝三篇已经写完发布，这次重点过剩下 5 个。
+其中[投放人做 GEO 的优势](/blog/2026-10-12-geo-toufang-advantage/)、[小红书点点 GEO 打法](/blog/2026-10-12-geo-xiaohongshu-diandian/)、[元宝 GEO 避坑](/blog/2026-10-12-geo-yuanbao-bikeng/)三篇已经写完发布，这次重点过剩下 5 个。
 
 ## 第一道门：SERP 内容类型门
 
