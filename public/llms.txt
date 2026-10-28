@@ -1,0 +1,82 @@
+# Huanworks
+
+> Huanworks is the personal site of huanle, a growth media buyer with 8 years of feed-ad experience (Xiaohongshu Juguang and Ocean Engine) and AI workflow practitioner. The site covers ad account diagnosis, growth strategy, GEO (generative engine optimization), AI workflows, and a personal knowledge-base OS (VoiceKB/AIOS). Language: Simplified Chinese.
+
+## Core
+
+- [Huanworks home](https://www.huanworks.com/): Turn media-buying data into growth actions. Diagnosis, unified metrics, and optimization across content, audiences, search and the conversion chain.
+- [About huanle](https://www.huanworks.com/about/): Background, working principles, capabilities, and the paid diagnosis service (from 5,000 yuan; diagnosis plus two follow-up reviews packaged at 12,000 yuan). Boundaries: no long-term account management, no media buying on behalf of clients, no creative production, no ROI promises.
+- [AIOS](https://www.huanworks.com/aios/): A personal AI operating system with Obsidian as the source of facts, combined with RAG, local LLMs, Skills, agents and automation.
+
+## GEO guide
+
+- [GEO guide index](https://www.huanworks.com/geo/): An 8-chapter guide to generative engine optimization: what GEO is, question mapping, baseline diagnosis, brand fact assets, content engineering, source distribution, measurement and acceptance, and the compliance roadmap.
+- [GEO 是什么：它和 SEO、AEO 到底有什么区别](https://www.huanworks.com/geo/01-what-is-geo/): What GEO targets and what it does not: making real, verifiable information easier for generative search and AI answer systems to discover, understand, cite and present accurately.
+- [GEO 问题库怎么建：从关键词转向用户决策任务](https://www.huanworks.com/geo/02-question-map/): Building a GEO question bank from user decision tasks, with nine question types and four intent funnels.
+- [GEO 基线诊断怎么做：多平台采样与结果判读](https://www.huanworks.com/geo/03-baseline-diagnosis/): Multi-platform sampling and how to read baseline results.
+- [GEO 品牌事实库：先解决“AI 不认识、认错、说不清”](https://www.huanworks.com/geo/04-brand-fact-assets/): Brand fact assets as the fix for AI systems not recognizing, misrecognizing, or failing to explain a brand.
+- [GEO 内容工程：从真实问题到可引用答案](https://www.huanworks.com/geo/05-content-engineering/): Content engineering: from real user questions to citable answers.
+- [GEO 信源与分发：为什么不能把同一篇文章全网复制](https://www.huanworks.com/geo/06-source-distribution/): Source strategy and distribution, and why duplicating the same article everywhere hurts.
+- [GEO 效果怎么验收：指标、复测与归因边界](https://www.huanworks.com/geo/07-measurement-acceptance/): Acceptance: metrics, re-measurement, and the limits of attribution.
+- [白帽 GEO 合规边界与 8 周执行路线图](https://www.huanworks.com/geo/08-compliance-roadmap/): White-hat GEO compliance boundaries and an 8-week execution roadmap.
+
+## Blog
+
+- [Blog index](https://www.huanworks.com/blog/): Notes on GEO, media buying, and AI workflows.
+- [把 VoiceKB 搬上线 — 这个站为什么存在](https://www.huanworks.com/blog/2026-05-21-hello/): Why this site exists: moving a personal knowledge base online.
+- [GEO 不是新 SEO，是 B2A2C — 一个投放操盘手的范式判断](https://www.huanworks.com/blog/2026-09-19-geo-b2a2c/): GEO framed as B2A2C, a paradigm judgment from a media buyer.
+- [投放人做 GEO 的三个增量](https://www.huanworks.com/blog/2026-09-19-geo-x-ad-ops/): Three advantages media buyers bring to GEO work.
+- [GEO 选题实战：我用七步流程给 huanworks 排了一期选题](https://www.huanworks.com/blog/2026-10-12-geo-topic-selection-shizhan/): A worked example of planning one GEO content cycle with a seven-step topic process.
+- [为什么做过投放的人，做 GEO 更有优势](https://www.huanworks.com/blog/2026-10-12-geo-toufang-advantage/): GEO needs search-intent understanding, unified metrics and experimental validation — the daily work of media buying.
+- [小红书点点 GEO：品牌在小红书 AI 搜索里怎么被推荐](https://www.huanworks.com/blog/2026-10-12-geo-xiaohongshu-diandian/): How brands get recommended in Xiaohongshu's Diandian AI search.
+- [元宝 GEO 避坑：四类伪优化套路识别指南](https://www.huanworks.com/blog/2026-10-12-geo-yuanbao-bikeng/): Four pseudo-optimization patterns to avoid on Tencent Yuanbao.
+
+## Playbooks
+
+- [Playbooks index](https://www.huanworks.com/methods/): Reusable SOPs and frameworks for media buying, growth review, GEO, and AI workflows.
+- [A3 种草决策框架](https://www.huanworks.com/methods/a3-seeding-decision-framework/): Turning "should we seed" into a quantified decision.
+- [投放账户诊断切入清单](https://www.huanworks.com/methods/account-diagnosis-checklist/): What the first week of a 4-week account diagnosis engagement covers.
+- [AI 类目洞察 4 步工作流](https://www.huanworks.com/methods/ai-category-insight-4steps/): Category insight across short video, livestream and product cards.
+- [AI 竞品话术分析 5 步 SOP](https://www.huanworks.com/methods/ai-livestream-script-analysis-5steps/): Extracting reusable structure from competitors' livestream scripts.
+- [竞品数据清洗 SOP](https://www.huanworks.com/methods/competitor-data-cleaning-sop/): From 619 raw records to one usable sentence for the client.
+- [巨量引擎 O-5A 三场景方法](https://www.huanworks.com/methods/douyin-o5a-three-scenarios/): Deriving audiences and media from business goals with the O-5A model.
+- [巨量云图行业特色人群](https://www.huanworks.com/methods/douyin-yuntu-industry-audience/): Four steps to judge which industry audiences are worth buying.
+- [巨量营销智擎版种草项目](https://www.huanworks.com/methods/douyin-zhijing-seeding-setup/): Moving seeding projects from many plans to concentrated learning.
+- [GEO 实战复盘：8 周把 AI 提及率从 1.7% 做到 35%](https://www.huanworks.com/methods/geo-ai-visibility-8weeks/): An 8-week GEO case raising AI mention rate from 1.7% to 35%.
+- [GEO 效果里的三个假象](https://www.huanworks.com/methods/geo-verification-traps/): Three illusions in GEO measurement: ranking first for yourself may be fake.
+- [数据 → 洞察 → 行动 → 结果：增长复盘闭环](https://www.huanworks.com/methods/growth-data-action-loop/): The data-insight-action-result growth review loop.
+- [小红书新品打爆 KFS 框架](https://www.huanworks.com/methods/kfs-new-product-launch-framework/): KFS framework for launching new products on Xiaohongshu, from insight to roadmap.
+- [本地 LLM 任务路由](https://www.huanworks.com/methods/local-llm-task-routing/): Choosing between local LLMs on privacy, cost, speed and quality.
+- [元元提示法笔记](https://www.huanworks.com/methods/meta-meta-prompting/): Notes on the meta-prompting method for running AI agents.
+- [n8n × Obsidian 工作流边界](https://www.huanworks.com/methods/n8n-obsidian-workflow-boundaries/): Orchestration is not a source of facts: boundaries for n8n and Obsidian workflows.
+- [RAG 知识库四道质量门](https://www.huanworks.com/methods/rag-knowledge-quality-gates/): Govern first, then retrieve: four quality gates for RAG knowledge bases.
+- [AI 产品化的“微信入口模式”](https://www.huanworks.com/methods/wechat-ai-product-entry-mode/): Selling services, not tools, through a WeChat entry point.
+- [小红书千帆推广排障框架](https://www.huanworks.com/methods/xiaohongshu-qianfan-ecommerce-diagnosis/): Troubleshooting Qianfan campaigns from plan goals to product and landing pages.
+- [小红书搜索首屏三要素](https://www.huanworks.com/methods/xiaohongshu-search-firstscreen/): First-screen search: buy the right keywords, say the right things, bid the right prices.
+- [小红书小红盟意向人群](https://www.huanworks.com/methods/xiaohongshu-xiaohongmeng-intent-audience/): Intent audiences: pre-launch insight, in-flight targeting, post-flight review.
+
+## Cases
+
+- [Cases index](https://www.huanworks.com/cases/): Delivered client work, anonymized where noted.
+- [HermesAgent 微信助理](https://www.huanworks.com/cases/hermes-agent-wechat/): An AI monetization case: 4,000 yuan per hour for a WeChat assistant.
+- [让 Agent 真正进入工作：三个流程设计案例](https://www.huanworks.com/cases/shengcai-agent-workflows-202609/): Three workflow-design cases for getting agents into real work.
+- [有流量之后如何成交：三个内容变现案例](https://www.huanworks.com/cases/shengcai-content-commerce-202609/): Three content monetization cases: converting traffic into sales.
+- [从 AI 工具演示到企业付费交付：三个服务案例](https://www.huanworks.com/cases/shengcai-enterprise-ai-service-202609/): Three cases moving from AI tool demos to paid enterprise delivery.
+
+## Projects
+
+- [Projects index](https://www.huanworks.com/projects/): Selected projects and explorations.
+- [ChatOCR](https://www.huanworks.com/projects/chat-ocr/): A local tool for recognizing WeChat chat history.
+- [某儿童智能硬件新品 618 种草规划](https://www.huanworks.com/projects/child-outdoor-ai-device-618/): 618 seeding plan for a children's smart hardware launch, summer outdoor mindshare.
+- [某家居品牌站外引流复盘](https://www.huanworks.com/projects/home-brand-cid-review/): Off-site traffic review for a home brand: exposure, clicks, real conversion.
+- [某连锁餐饮品牌挑战赛人群包规划](https://www.huanworks.com/projects/restaurant-challenge-lbs-seeding/): Audience planning for a restaurant chain challenge: from broad exposure to store visits.
+- [某 3C 智能家居品牌 618 投放规划](https://www.huanworks.com/projects/smart-home-618/): 618 media plan for a smart-home brand: smart locks plus cameras.
+- [某服饰品牌竞品分析](https://www.huanworks.com/projects/sunwear-competitor/): Competitor analysis using data to separate volume-piling from premium routes.
+- [某在线旅行平台 2026 小红书竞标方案](https://www.huanworks.com/projects/travel-xiaohongshu-bkfs-bid/): A BKFS full-funnel growth model for an online travel platform's Xiaohongshu bid.
+- [video10x](https://www.huanworks.com/projects/video10x/): An AI video SaaS exploration for overseas markets.
+- [VoiceKB](https://www.huanworks.com/projects/voicekb-aios/): VoiceKB, the Obsidian-driven personal AIOS.
+
+## Optional
+
+- [Full content in one file](https://www.huanworks.com/llms-full.txt): The full text of the pages above in a single Markdown file.
+- [Sitemap](https://www.huanworks.com/sitemap-index.xml): The full list of pages on this site.
