@@ -1,4 +1,18 @@
+# huanworks.com robots.txt
+# General crawlers: unchanged.
 User-agent: *
 Allow: /
+
+# Automatic search discovery — allow (feeds ChatGPT / Perplexity / Claude search answers).
+User-agent: OAI-SearchBot
+User-agent: PerplexityBot
+User-agent: Claude-SearchBot
+Allow: /
+
+# Model-training crawlers — disallow. Training control is separate from search discovery: blocking training does not by itself block search citations. Google-Extended does not affect Google Search inclusion/ranking.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+Disallow: /
 
 Sitemap: https://www.huanworks.com/sitemap-index.xml
