@@ -9,6 +9,26 @@
 > DRAFT generated 2026-10-29 from the local clone, which trails origin/main.
 > Re-verify against the live site before publishing.
 
+## Strategy workbench
+
+URL: https://www.huanworks.com/strategy-workbench/
+Template: https://www.huanworks.com/templates/strategy-brief.md
+
+策略工作台：从 Brief 到预算的营销方案六层编排法。公开方法与填写模板，适合客户提案、新品、节点和年度整合方案。
+
+开始前锁定品牌产品、业务目标、目标人群、平台、周期、预算、现有资料与交付形式，并区分事实、假设与待补项。
+
+1. 证据洞察：筛选会改变决策的事实，记录来源、日期、口径、业务含义和行动，产出证据表。
+2. 核心矛盾：明确目标、阻力、优势机会、目标人群和目标行为，产出一句主问题。
+3. 价值翻译：技术或资质证据 → 功能利益 → 使用场景 → 情绪或身份价值 → 传播表达，保留证明链。
+4. 人群 × 场景 × 内容：对齐角色、决策问题、触发场景、核心信息、内容形式、证据、达人角色与承接动作。
+5. 触点 × 节奏：按项目任务分配渠道和阶段，记录任务、人群、内容、流量、承接、负责人及退出条件。
+6. KPI × 预算：依据目标、阶段、素材和可比基线反推预算，分别记录媒体与内容等费用，注明公式、观察窗、归因和验收方式。
+
+五道验收门：证据可追溯，推导能回到核心矛盾，各策略单元横向对齐，指标预算对应目标，假设与时效边界清楚。
+
+整合提案按 Brief 与成功标准、证据与问题、价值表达、人群内容矩阵、渠道承接、Roadmap 预算 KPI 展开。页级大纲先写结论、证据、图表和动作。旧方案只借结构，当前产品数据、预算和平台机制须重新核对。纯视觉设计、单条创意脚本、媒介排期和结案复盘使用专项方法。公开页不包含客户身份、原始报表或具体预算。该工作台为方法与模板，不是自动生成方案的软件。
+
 ## Homepage
 
 Huanworks: turn media-buying data into growth actions. For brands, agency teams
