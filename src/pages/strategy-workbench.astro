@@ -1,0 +1,135 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactCta from "../components/ContactCta.astro";
+
+const layers = [
+  {
+    id: "evidence", name: "证据洞察", question: "哪些事实会改变这次决策？",
+    intro: "从市场、品类、竞品、产品、人群、内容搜索和账户表现里，筛出影响目标的证据。",
+    prompts: ["记录来源、日期、适用对象和数据口径。", "区分已确认事实、工作假设与资料缺口。", "每条证据接一句：对品牌意味着什么，因此采取什么动作。"],
+    output: "一张有来源、有判断、有动作的证据表。",
+    check: "删掉这条信息，方案会不会改变？不会改变的背景材料可以压缩。",
+  },
+  {
+    id: "problem", name: "核心矛盾", question: "阻碍目标实现的关键问题是什么？",
+    intro: "将分散的观察压缩成一个主问题，让后续内容、媒介和预算围绕同一个任务展开。",
+    prompts: ["品牌想达成什么业务目标？", "当前受制于什么阻力，有哪些可利用的优势或机会？", "要让哪类人相信什么，并采取什么行为？"],
+    output: "一句主张：想要达成什么，但受制于什么，因此必须改变什么。",
+    check: "后续每个动作都应能解释它如何解决这个问题。",
+  },
+  {
+    id: "value", name: "价值翻译", question: "产品卖点如何变成用户的选择理由？",
+    intro: "保留产品的证明链，再把技术、参数和资质翻译成用户可理解的利益与场景。",
+    prompts: ["技术或资质证据 → 功能利益 → 使用场景。", "再连接情绪或身份价值，形成清晰的传播表达。", "明确哪些表达有证据，哪些效果不能直接承诺。"],
+    output: "核心表达与支撑它的产品证据。",
+    check: "表达既要让用户理解，也要能回到真实产品，避免只剩情绪或参数。",
+  },
+  {
+    id: "unit", name: "人群 × 场景 × 内容", question: "谁会在什么时刻被什么信息说服？",
+    intro: "以一个具体决策场景为单位，把人群、内容、证明和下一步行动放在一起。",
+    prompts: ["人群角色、决策问题、触发场景。", "核心信息、内容形式、证明材料。", "达人承担的角色，以及搜索、进店、留资或成交的承接动作。"],
+    output: "可执行的策略单元，而非彼此独立的人群表、内容表和达人表。",
+    check: "每个单元都要同时回答：对谁说、说什么、凭什么、下一步做什么。",
+  },
+  {
+    id: "rhythm", name: "触点 × 节奏", question: "渠道与阶段分别承担什么任务？",
+    intro: "按项目任务组织渠道和阶段，让内容供给、流量动作与转化承接相互配合。",
+    prompts: ["新品可按测试、放大、承接组织；节点可按预热、爆发、长尾组织。", "年度项目区分日常经营与集中节点，按实际需要选平台。", "每阶段写清任务、人群、内容资产、流量动作、承接动作和退出条件。"],
+    output: "带负责人、关键依赖和阶段判断条件的 Roadmap。",
+    check: "每个平台与阶段都有明确任务，不能只换日期或复制同一份内容。",
+  },
+  {
+    id: "budget", name: "KPI × 预算", question: "投入与结果如何对应，又如何验收？",
+    intro: "从目标、阶段、素材供给和可比历史基线反推预算，分别记录媒体、内容与项目成本。",
+    prompts: ["认知看触达，兴趣看互动或搜索，行动看有效访问、线索或成交。", "标明公式、数据来源、平台定义、观察窗与归因范围。", "没有基线时列变量和验证办法，先确认数据再确定目标值与比例。"],
+    output: "目标、指标、预算和验收方式一一对应的经营表。",
+    check: "预算可加总、结果可回读；不同平台和费用口径先分列，再讨论汇总。",
+  },
+];
+const gates = [
+  ["证据", "关键判断能回到来源与日期。"],
+  ["推导", "表达和动作能回到核心矛盾。"],
+  ["对齐", "人群、内容、达人、投流与承接能横向对应。"],
+  ["经营", "KPI 与预算对应业务目标，口径一致。"],
+  ["边界", "假设、资料缺口、平台时效与承诺范围清楚。"],
+];
+---
+
+<Layout title="策略工作台：从 Brief 到预算的营销方案六层编排法 | Huanworks" description="用证据洞察、核心矛盾、价值翻译、人群场景内容、触点节奏、KPI预算六层方法组织营销提案。包含工作提示、交付清单、五道验收门与可下载的 Brief 模板。">
+  <section class="py-12 border-b border-[var(--color-border)] mb-10">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">STRATEGY WORKBENCH / 方法与模板</p>
+    <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-5">把 Brief 变成<br/>有依据、能执行的策略。</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-3xl leading-relaxed">用六层编排法，把资料、判断、人群、内容、媒介与预算接成一条推导链。适合客户提案、新品规划、节点营销与年度整合方案。</p>
+    <div class="flex flex-wrap gap-3 mt-7">
+      <a href="#start" class="button-primary">开始梳理方案 ↓</a>
+      <a href="/templates/strategy-brief.md" download class="button-secondary">下载 Brief 与策略模板 ↓</a>
+    </div>
+    <p class="text-xs text-[var(--color-fg-dim)] mt-5 leading-relaxed">公开方法与填写模板 · 根据你的项目资料逐步完成 · 更新于 2026-11-10</p>
+  </section>
+
+  <section id="start" class="prose-zh max-w-3xl mb-10 scroll-mt-24">
+    <h2>先锁定这份 Brief</h2>
+    <p>开始推导前，确认品牌与产品、业务目标、目标人群、平台、周期、预算、现有资料和最终交付形式。先写清“这次要解决什么”，再决定需要哪些分析。</p>
+    <p>为每项输入标记已确认、假设或待补。旧方案可以借结构，当前产品事实、预算、搜索数据和平台机制必须重新核对。</p>
+  </section>
+
+  <nav aria-label="六层策略编排" class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-12">
+    {layers.map((layer, index) => (
+      <a href={`#${layer.id}`} class="rounded border border-[var(--color-border)] px-4 py-3 text-sm hover:border-[var(--color-accent)] transition-colors">
+        <span class="font-mono text-[var(--color-accent)] mr-2">0{index + 1}</span>{layer.name}
+      </a>
+    ))}
+  </nav>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    {layers.map((layer, index) => (
+      <section id={layer.id} class="capability-card scroll-mt-24">
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-3">LAYER 0{index + 1}</p>
+        <h2 class="text-2xl font-semibold mb-3">{layer.name}</h2>
+        <p class="font-medium mb-3 leading-relaxed">{layer.question}</p>
+        <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-5">{layer.intro}</p>
+        <details class="border-y border-[var(--color-border)] py-4 mb-5" open={index === 0}>
+          <summary class="cursor-pointer text-sm font-semibold">展开工作提示</summary>
+          <ul class="list-disc pl-5 mt-4 space-y-2 text-sm text-[var(--color-fg-muted)] leading-relaxed">
+            {layer.prompts.map((prompt) => <li>{prompt}</li>)}
+          </ul>
+        </details>
+        <p class="text-sm leading-relaxed mb-3"><strong class="text-[var(--color-accent)]">本层产物：</strong>{layer.output}</p>
+        <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed"><strong>完成检查：</strong>{layer.check}</p>
+      </section>
+    ))}
+  </div>
+
+  <section class="my-14">
+    <div class="section-heading">
+      <p>QUALITY GATES</p>
+      <h2>交付前，过五道验收门</h2>
+      <span>让每一层产物相互支持，再进入提案和执行。</span>
+    </div>
+    <ol class="grid sm:grid-cols-2 gap-3">
+      {gates.map(([name, text], index) => (
+        <li class="rounded border border-[var(--color-border)] p-5">
+          <h3 class="font-semibold mb-2"><span class="font-mono text-[var(--color-accent)] mr-2">0{index + 1}</span>{name}门</h3>
+          <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed">{text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="prose-zh max-w-3xl mb-14">
+    <h2>把策略变成可提案的内容</h2>
+    <p>整合方案可按“Brief 与成功标准 → 证据与核心矛盾 → 价值表达 → 人群内容矩阵 → 渠道与承接 → Roadmap、预算和 KPI”展开。专项方案只保留与本次任务有关的部分。</p>
+    <p>每页用一句结论做标题，一页证明一件事。先确定页级大纲中的结论、证据、图表与动作，再进入 PPT 排版。</p>
+    <h2>适用范围</h2>
+    <p>适合种草、搜索承接、转化、新品与整合营销策略。纯视觉设计、单条创意脚本、单纯媒介排期和结案复盘应使用对应的专项方法。</p>
+    <h2>继续进入专项方法</h2>
+    <ul>
+      <li><a href="/methods/kfs-new-product-launch-framework/">小红书新品 KFS 框架</a>：把策略接入内容、人群、搜索与阶段投放。</li>
+      <li><a href="/methods/sem-search-account-diagnosis/">SEM 搜索广告诊断</a>：核对搜索意图、表达与承接。</li>
+      <li><a href="/methods/media-budget-measurement/">投放预算与复盘口径</a>：分清媒体费用、内容成本与业务结果。</li>
+      <li><a href="/geo/">GEO 指南</a>：从用户决策问题到品牌事实、内容与复测。</li>
+    </ul>
+    <p>这套方法由过往营销方案的结构与判断过程抽象整理，公开版保留可复用框架，客户身份、原始报表和具体预算不在页面展示。项目应用与交付范围可查看<a href="/services/">合作方向</a>。</p>
+  </section>
+  <ContactCta compact />
+</Layout>

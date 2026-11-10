@@ -9,6 +9,11 @@
 - [SEM 搜索广告诊断](https://www.huanworks.com/methods/sem-search-account-diagnosis/): Six checks from conversion definitions and actual search terms to landing pages and lead quality.
 - [投放预算与复盘](https://www.huanworks.com/methods/media-budget-measurement/): Separate media, creator and total project costs, then evaluate deduplicated business outcomes.
 
+## Strategy workbench
+
+- [策略工作台](https://www.huanworks.com/strategy-workbench/): A public marketing strategy framework and template: evidence, core problem, value translation, audience/scenario/content, touchpoints/timing, and KPI/budget. Includes deliverables and five quality gates. This is a guide and downloadable template, not an automatic proposal generator.
+- [Brief 与六层编排模板](https://www.huanworks.com/templates/strategy-brief.md): Markdown worksheet for planning inputs, sources, strategy units, channel schedules, budgets and acceptance checks.
+
 ## Core
 
 - [Huanworks home](https://www.huanworks.com/): Turn media-buying data into growth actions. Diagnosis, unified metrics, and optimization across content, audiences, search and the conversion chain.
