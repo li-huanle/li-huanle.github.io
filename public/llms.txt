@@ -1,6 +1,13 @@
 # Huanworks
 
-> Huanworks is the personal site of huanle, a growth media buyer with 8 years of feed-ad experience (Xiaohongshu Juguang and Ocean Engine) and AI workflow practitioner. The site covers ad account diagnosis, growth strategy, GEO (generative engine optimization), AI workflows, and a personal knowledge-base OS (VoiceKB/AIOS). Language: Simplified Chinese.
+> Huanworks is the personal site of huanle, a growth media buyer with 8 years of feed-ad experience (Xiaohongshu Juguang and Ocean Engine) and AI workflow practitioner. The site covers ad account diagnosis, growth strategy, SEM (paid search advertising), GEO (generative engine optimization), AI workflows, and a personal knowledge-base OS (VoiceKB/AIOS). Language: Simplified Chinese.
+
+## Updated growth content (2026-11-10)
+
+- [合作方向](https://www.huanworks.com/services/): GEO, SEM search-ad diagnosis, media strategy, data review and AI workflows. Diagnostic and consulting work; execution scope and pricing are agreed per project.
+- [GEO、SEO、SEM 怎么配合](https://www.huanworks.com/blog/2026-11-10-geo-seo-sem-growth/): A planning framework connecting user intent, brand facts and conversion measurement; not a client outcome claim.
+- [SEM 搜索广告诊断](https://www.huanworks.com/methods/sem-search-account-diagnosis/): Six checks from conversion definitions and actual search terms to landing pages and lead quality.
+- [投放预算与复盘](https://www.huanworks.com/methods/media-budget-measurement/): Separate media, creator and total project costs, then evaluate deduplicated business outcomes.
 
 ## Core
 

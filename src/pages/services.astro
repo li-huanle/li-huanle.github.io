@@ -1,0 +1,85 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ContactCta from "../components/ContactCta.astro";
+
+const directions = [
+  {
+    id: "geo", label: "01 / GEO", title: "GEO 与 AI 搜索可见度",
+    problem: "用户在 AI 里问到你的品类，品牌却没被提及，或产品信息被说错。",
+    approach: "先建立用户决策问题库和多平台基线，再梳理品牌事实、官网内容与可核验信源，按相同采样条件复测。",
+    outputs: ["问题库与基线诊断", "品牌事实资产与内容缺口清单", "内容、信源与复测优先级"],
+    measurement: "分别记录品牌提及、引用来源、事实准确性与引荐访问。AI 回答会波动，单次截图不能证明持续效果。",
+    href: "/geo/", link: "阅读 8 章 GEO 指南",
+  },
+  {
+    id: "sem", label: "02 / SEM", title: "SEM 搜索广告诊断",
+    problem: "关键词持续花钱，点击看起来不错，有效咨询和成交却没有跟上。",
+    approach: "沿搜索词 → 关键词 → 创意 → 落地页 → 转化回传逐环节排查；品牌、品类、场景与竞品意图分开判断。",
+    outputs: ["搜索意图与账户结构诊断", "搜索词、创意与落地页匹配清单", "转化追踪核查与优化实验计划"],
+    measurement: "在相同转化定义和归因窗口下，观察有效线索成本、线索质量及成交反馈，避免只用 CPC 判断效果。",
+    href: "/methods/sem-search-account-diagnosis/", link: "查看 SEM 诊断方法",
+  },
+  {
+    id: "media", label: "03 / MEDIA BUYING", title: "广告投放与增长策略",
+    problem: "内容、达人、人群、信息流和搜索都在做，却说不清预算该先投在哪里。",
+    approach: "以小红书聚光与巨量引擎为主要实践平台，从业务目标拆解内容、人群、搜索与承接任务，明确预算、节奏和观察窗。",
+    outputs: ["账户与内容人群诊断", "预算分工与阶段投放规划", "指标口径表、复盘与后续动作"],
+    measurement: "按种草、引流、线索或成交分别设置指标；达人费用与媒体花费分开记录，跨平台转化先核对去重和归因。",
+    href: "/methods/media-budget-measurement/", link: "查看预算与复盘口径",
+  },
+  {
+    id: "workflow", label: "04 / DATA & AI", title: "数据复盘与 AI 工作流",
+    problem: "团队反复拉表、清洗和写报告，但相同问题还在重复发生。",
+    approach: "先统一数据和决策规则，再将已跑通的高频环节沉淀为模板、知识库、Skill 或 Agent，保留人工审核。",
+    outputs: ["数据口径与复盘模板", "高频交付的 SOP 与知识资产", "工作流试点与验收清单"],
+    measurement: "分别验收输出准确性、来源可追溯性与节省的人工步骤；用实际业务任务检验是否可用。",
+    href: "/aios/", link: "查看 AIOS 实践",
+  },
+];
+---
+
+<Layout title="GEO、SEM 与广告投放：合作方向与交付内容 | Huanworks" description="了解 Huanworks 的 GEO 与 AI 搜索可见度、SEM 搜索广告诊断、小红书与巨量引擎投放策略、数据复盘与 AI 工作流咨询的具体交付。">
+  <section class="py-12 border-b border-[var(--color-border)] mb-12">
+    <p class="text-sm font-mono text-[var(--color-accent)] tracking-widest mb-3">WORK WITH HUANWORKS</p>
+    <h1 class="text-3xl md:text-4xl font-bold mb-5 leading-snug">让品牌被找到，<br/>让投放有依据，让增长可复盘。</h1>
+    <p class="text-[var(--color-fg-muted)] max-w-3xl leading-relaxed">从 GEO、SEM 到信息流投放，把用户的问题、品牌的事实和转化链路连接起来。先找影响结果的关键环节，再确定优化动作与验收方式。</p>
+    <div class="flex flex-wrap gap-3 mt-7">
+      <a href="#project-contact" class="button-primary">沟通你的项目 ↗</a>
+      <a href="/blog/2026-11-10-geo-seo-sem-growth/" class="button-secondary">先了解三者如何配合 →</a>
+    </div>
+  </section>
+
+  <div class="grid md:grid-cols-2 gap-5">
+    {directions.map((item) => (
+      <section id={item.id} class="capability-card scroll-mt-24">
+        <p class="text-xs font-mono text-[var(--color-accent)] mb-3">{item.label}</p>
+        <h2 class="text-2xl font-semibold mb-4">{item.title}</h2>
+        <p class="text-[var(--color-fg)] mb-4 leading-relaxed">{item.problem}</p>
+        <p class="text-sm text-[var(--color-fg-muted)] mb-5 leading-relaxed">{item.approach}</p>
+        <h3 class="font-semibold mb-2">具体交付</h3>
+        <ul class="list-disc pl-5 text-sm text-[var(--color-fg-muted)] space-y-2 mb-5">
+          {item.outputs.map((output) => <li>{output}</li>)}
+        </ul>
+        <p class="text-sm text-[var(--color-fg-muted)] leading-relaxed mb-5"><strong class="text-[var(--color-fg)]">怎么验收：</strong>{item.measurement}</p>
+        <a href={item.href} class="card-link">{item.link} →</a>
+      </section>
+    ))}
+  </div>
+
+  <section class="prose-zh max-w-3xl my-14">
+    <h2>从一个具体问题开始合作</h2>
+    <ol>
+      <li><strong>对齐问题：</strong>提供业务目标、平台、当前卡点和时间安排，先判断适合从哪个环节切入。</li>
+      <li><strong>确认范围：</strong>约定数据来源、可访问范围、交付清单与验收指标，诊断使用只读权限或脱敏导出。</li>
+      <li><strong>交付判断：</strong>给出诊断与优先级动作，写明负责人、观察周期和复盘条件。</li>
+      <li><strong>回读结果：</strong>按约定窗口核对执行与数据变化，决定继续验证、调整还是停止。</li>
+    </ol>
+    <h2>合作范围</h2>
+    <p>主要提供诊断、策略与咨询，投放实践重点是小红书聚光和巨量引擎。SEM 跨平台项目先确认账户与需求，再约定服务范围。日常账户操作、素材制作与内容发布由你的团队执行。</p>
+    <p>现有投放诊断的交付、周期与价格见<a href="/about/">关于页</a>；GEO、SEM 专项与工作流项目按实际范围确认报价。GEO 以采样和复测评估变化，投放以约定口径验收，不承诺固定排名、固定推荐位或 ROI。</p>
+    <h2>沟通前准备什么</h2>
+    <p>品牌与产品简介、目标用户和业务目标、主要平台、近期报表及当前最想解决的问题即可。初次沟通请使用脱敏材料，账户密码、访问令牌和客户个人信息无需提供。</p>
+    <p>相关内容：<a href="/geo/">GEO 指南</a> · <a href="/methods/sem-search-account-diagnosis/">SEM 诊断清单</a> · <a href="/methods/media-budget-measurement/">投放预算与复盘口径</a> · <a href="/projects/">脱敏项目案例</a></p>
+  </section>
+  <ContactCta compact />
+</Layout>

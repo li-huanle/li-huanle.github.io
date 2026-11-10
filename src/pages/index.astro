@@ -20,7 +20,7 @@ const featuredCases = cases.slice(0, 3);
 const contactHref = "#project-contact";
 ---
 
-<Layout>
+<Layout title="GEO、SEM 与广告投放诊断 | Huanworks" description="Huanworks 分享 GEO、SEM 搜索广告、小红书聚光与巨量引擎投放方法，提供账户诊断、增长策略、数据复盘与 AI 工作流咨询。">
   <!-- Hero -->
   <section class="home-hero">
     <div class="hero-copy">
@@ -35,11 +35,11 @@ const contactHref = "#project-contact";
       </h1>
       <p class="hero-thesis">再把有效动作，沉淀成可复用的 AI 工作流。</p>
       <p class="hero-description">
-        面向品牌方、代理团队和增长负责人，诊断投放问题，统一数据口径，优化内容、人群、搜索与承接链路。
+        面向品牌方、代理团队和增长负责人，连接 GEO、SEM 搜索广告与信息流投放，诊断账户问题，优化内容、人群、搜索与转化承接。
       </p>
       <div class="hero-actions">
         <a href={contactHref} class="button-primary">发送项目问题 <span>↗</span></a>
-        <a href="/projects/" class="button-secondary">查看已交付项目 <span>→</span></a>
+        <a href="/services/" class="button-secondary">查看合作方向 <span>→</span></a>
       </div>
     </div>
     <GrowthLoop />
@@ -50,14 +50,14 @@ const contactHref = "#project-contact";
     </div>
   </section>
 
-  <!-- 三大方向 -->
+  <!-- 能力方向 -->
   <section class="home-section">
     <div class="section-heading">
       <p>01 / CAPABILITIES</p>
       <h2>我在做什么</h2>
       <span>把复杂的增长问题，拆成能执行、能回读、能迭代的动作。</span>
     </div>
-    <div class="grid md:grid-cols-3 gap-4">
+    <div class="grid md:grid-cols-2 gap-4">
       {
         [
           {
@@ -67,10 +67,16 @@ const contactHref = "#project-contact";
             href: "/methods/account-diagnosis-checklist/",
           },
           {
-            title: "数据复盘与经营判断",
-            sub: "Data → Insight → Action",
-            body: "统一口径、清洗数据、拆解异常，把日报和复盘从“报数字”升级为可追踪、可验证的经营动作。",
-            href: "/methods/growth-data-action-loop/",
+            title: "SEM 搜索广告诊断",
+            sub: "Search Engine Marketing",
+            body: "沿搜索词、关键词、创意、落地页与转化回传排查浪费，结合有效线索和成交质量判断预算去向。",
+            href: "/services/#sem",
+          },
+          {
+            title: "GEO 与 AI 搜索可见度",
+            sub: "Generative Engine Optimization",
+            body: "从真实决策问题出发，梳理品牌事实、可引用内容与信源，用固定问题库复测提及、引用和事实准确性。",
+            href: "/services/#geo",
           },
           {
             title: "AI 工作流与知识库落地",
